@@ -1,0 +1,40 @@
+.Input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .Input ::placeholder{
+      color: teal;
+  }
+  
+  .Label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .InputElement {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    border-radius: 10px;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    
+  }
+  
+  .InputElement:focus {
+    outline: none;
+    background-color: #ccc;
+  }
+  
+  .Invalid {
+    border: 1px solid rgb(196, 7, 7);
+    background-color: #ddbfbc;
+  }
+  

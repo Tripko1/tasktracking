@@ -1,0 +1,32 @@
+.Button {
+    background-color: teal;
+    border: none;
+    color: wheat;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  /* .Button:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+  } */
+  
+  .Button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .Success {
+    background-color: teal;
+  }
+  
+  .Danger {
+    background-color: transparent;
+    color: #944317;
+  }
+  
