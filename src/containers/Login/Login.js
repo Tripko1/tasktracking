@@ -130,18 +130,13 @@ class Login extends Component {
             errorMessage = <p style={{ color: 'red' }}><strong>{this.props.error}</strong></p>;
         }
 
-        let authRedirect = null;
-        if (this.props.isAuthenticated) {
-            authRedirect = <Redirect to={this.props.authRedirectPath} />;
-        }
-
         if (this.props.success) {
             this.props.onSetSuccess()
         }
 
         return (
             <div >
-                {authRedirect}
+
                 <div className="Loginbox">
                     <h1>LOG IN</h1>
                     {errorMessage}
@@ -166,13 +161,12 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.token,
-        userId: state.userId,
-        loading: state.loading,
-        error: state.error,
-        isAuthenticated: state.token !== null,
-        authRedirectPath: state.authRedirectPath,
-        success: state.success
+        token: state.auth.token,
+        userId: state.auth.userId,
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        success: state.auth.success
     }
 }
 

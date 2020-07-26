@@ -1,0 +1,28 @@
+.dropdown-item{
+    height: 50px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    border-radius: 8px; 
+    padding: 0.5rem;
+}
+
+.icon{
+    width: 30px;
+    height: 30px;
+    background-color: #484a4d;
+    border-radius: 50%;
+    border: 1px solid white;
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+  }
+  
+  .icon svg{
+    fill: white;
+    width: 20px;
+    height: 20px;
+  }

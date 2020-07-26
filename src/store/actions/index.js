@@ -6,3 +6,6 @@ export {
     registration,
     setSuccess
 } from "./auth"
+export {
+    getUserData
+} from "./getUserData"

@@ -210,13 +210,13 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.token,
-        userId: state.userId,
-        loading: state.loading,
-        error: state.error,
-        isAuthenticated: state.token !== null,
-        authRedirectPath: state.authRedirectPath,
-        success: state.success
+        token: state.auth.token,
+        userId: state.auth.userId,
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        authRedirectPath: state.auth.authRedirectPath,
+        success: state.auth.success
     }
 }
 

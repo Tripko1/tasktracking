@@ -1,0 +1,17 @@
+## git status
+## git add .
+## git commit -m "Added index.html" -m "some description"
+## git push origin master
+
+## git branch
+## git checkout  -b naziv-grane ------------> kreira novu granu naziv-grane, i -b znaci da je menja odmah na nju
+## git checkout master -------> menja na master granu
+## git merge
+## git diff
+
+-Ako smo recimo na master grani i zelimo da uradimo merge sa develop granom
+## git diff develop
+
+## git pull
+
+## git branch -d neka_grana ----> brisanje neke grane

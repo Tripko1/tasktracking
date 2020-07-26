@@ -9,8 +9,15 @@ const toolbar = (props) => (
         <div className="Logo">
             <Logo />
         </div>
-        <nav className="DesktopOnly">
-            <NavigationItems isAuth={props.isAuth} />
+        <nav >
+            {props.userData.id !== null ?
+                <NavigationItems
+                    isAuth={props.isAuth}
+                    userData={props.userData}
+                    open={props.open}
+                    setOpen={props.setOpen}
+                /> : null}
+
         </nav>
 
     </header>

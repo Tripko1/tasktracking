@@ -1,13 +1,16 @@
 import React from "react";
 import "./NavigationItem.css";
-import { NavLink } from "react-router-dom";
 
-const navigationItem = (props) => (
-    <li className="NavigationItem">
-        <NavLink to={props.link} exact activeClassName="active">
-            {props.children}
-        </NavLink>
-    </li>
-);
+const navigationItem = (props) => {
+
+    return (
+        <li className="NavigationItem">
+            <div className="icon-button" onClick={() => props.setOpen()}>
+                {props.icon}
+                {props.open ? props.children : null}
+            </div>
+        </li>
+    )
+}
 
 export default navigationItem;
