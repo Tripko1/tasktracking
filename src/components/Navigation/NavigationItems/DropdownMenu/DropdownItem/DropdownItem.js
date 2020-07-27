@@ -4,7 +4,7 @@ import "./DropdownItem.css";
 const dropdownItem = (props) => {
     return (
         <div className="dropdown-item">
-            <span className="icon" style={{ marginRight: "10px" }}>{props.leftIcon}</span>
+            {props.leftIcon ? <span className="icon" style={{ marginRight: "10px" }}>{props.leftIcon}</span> : null}
             {props.children}
         </div>
     )

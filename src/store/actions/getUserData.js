@@ -44,3 +44,50 @@ export const getUserData = (token) => {
             })
     }
 }
+
+export const uploadImageStart = () => {
+    return {
+        type: actionTypes.UPLOAD_IMAGE_START
+    }
+}
+
+export const uploadImageFail = (error) => {
+    return {
+        type: actionTypes.UPLOAD_IMAGE_FAIL,
+        error: error
+    }
+}
+
+export const uploadImageSuccess = (data) => {
+    return {
+        type: actionTypes.UPLOAD_IMAGE_SUCCESS,
+        id: data.id,
+        img: data.img,
+        name: data.name,
+        username: data.username,
+        email: data.email
+    }
+}
+
+export const uploadImage = (token, image) => {
+    console.log(image)
+    return dispatch => {
+        dispatch(uploadImageStart())
+        const fd = new FormData();
+        fd.append("img", image, image.name);
+        axios.post("api/users/images", fd, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(response => {
+                console.log(response)
+                dispatch(uploadImageSuccess(response.data.data))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}

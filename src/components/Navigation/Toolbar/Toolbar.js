@@ -1,16 +1,17 @@
 import React from 'react';
 import "./Toolbar.css";
 import Logo from "../../Logo/Logo";
-import NavigationItems from "../NavigationItems/NavigationItems"
+import NavigationItems from "../NavigationItems/NavigationItems";
+import { Link } from "react-router-dom";
 
 
 const toolbar = (props) => (
     <header className="Toolbar">
         <div className="Logo">
-            <Logo />
+            <Link to="/" alt="Home"><Logo /></Link>
         </div>
         <nav >
-            {props.userData.id !== null ?
+            {props.isAuth ?
                 <NavigationItems
                     isAuth={props.isAuth}
                     userData={props.userData}

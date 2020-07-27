@@ -1,0 +1,24 @@
+.Profile{
+    width: 100%;
+    height: 100%;
+}
+
+.Header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 110px;
+    padding-bottom: 32px;
+    width: 100%;
+    background-color: #ccc;
+}
+
+.Header-item{
+    margin-left: 10px;
+}
+
+@media(max-width: 400px){
+    .Profile{
+        width: 399px;
+    }
+}

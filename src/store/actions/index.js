@@ -7,5 +7,6 @@ export {
     setSuccess
 } from "./auth"
 export {
-    getUserData
+    getUserData,
+    uploadImage
 } from "./getUserData"

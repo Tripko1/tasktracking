@@ -3,15 +3,12 @@ import "./Home.css";
 import * as actions from "../../store/actions/index";
 
 import Spinner from "../../components/UI/Spinner/Spinner";
-
 import { connect } from 'react-redux'
-
 class Home extends Component {
     componentDidMount() {
         this.props.onGetUserData(this.props.token, this.props.userId);
     }
     render() {
-
         let Homecontent = <Spinner />;
         let error = null;
 

@@ -7,12 +7,13 @@ import * as actions from "./store/actions/index";
 import Layout from "./hoc/Layout/Layout";
 import Login from "./containers/Login/Login";
 import Home from "./containers/Home/Home";
-import SignOut from "./containers/SignOut/SignOut"
-import SignUp from "./containers/SignUp/SignUp"
+import SignOut from "./containers/SignOut/SignOut";
+import SignUp from "./containers/SignUp/SignUp";
+import Profile from "./containers/Profile/Profile";
 
 class App extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.onTryAutoSignUp()
   }
 
@@ -21,21 +22,21 @@ class App extends Component {
       <Switch>
         <Route path='/signup' component={SignUp} />
         <Route path='/' exact component={Login} />
-        <Redirect to="/" />
       </Switch>
     )
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
           <Route path='/logout' component={SignOut} />
-          <Route path='/home' component={Home} />
-          <Redirect to="/home" />
+          <Route path='/editProfile' component={Profile} />
+          <Route path='/' exact component={Home} />
+          <Route render={() => <Redirect to="/" />} />
         </Switch>
       )
     }
     return (
       <div>
-        <Layout>
+        <Layout isAuth={this.props.isAuthenticated}>
           {routes}
         </Layout>
       </div>

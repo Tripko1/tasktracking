@@ -1,0 +1,16 @@
+.ChangePicture{
+    display: column;
+    margin: 20px 10px;
+}
+
+.changeImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insertImage{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
