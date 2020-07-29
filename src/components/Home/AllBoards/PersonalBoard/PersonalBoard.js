@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 import background from "../../../../assets/images/slika2.jpg";
 import image from "../../../../assets/images/user.png";
-import plus from "../../../../assets/images/add-icon.png";
+import plus from "../../../../assets/images/icon/add-icon.png";
 
 const personalBoard = (props) => {
     let url = ""
