@@ -14,7 +14,8 @@ export const getUserDataSuccess = (data) => {
         img: data.img,
         name: data.name,
         username: data.username,
-        email: data.email
+        email: data.email,
+        bio: data.bio
     }
 }
 
@@ -28,7 +29,7 @@ export const getUserDataFail = (error) => {
 export const getUserData = (token) => {
     return (dispatch) => {
         dispatch(getUserDataStart());
-        axios.get("api/me", {
+        axios.get("/me", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -65,17 +66,17 @@ export const uploadImageSuccess = (data) => {
         img: data.img,
         name: data.name,
         username: data.username,
-        email: data.email
+        email: data.email,
+        bio: data.bio
     }
 }
 
 export const uploadImage = (token, image) => {
-    console.log(image)
     return dispatch => {
         dispatch(uploadImageStart())
         const fd = new FormData();
         fd.append("img", image, image.name);
-        axios.post("api/users/images", fd, {
+        axios.post("/users/images", fd, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -83,7 +84,6 @@ export const uploadImage = (token, image) => {
             }
         })
             .then(response => {
-                console.log(response)
                 dispatch(uploadImageSuccess(response.data.data))
             })
             .catch(error => {

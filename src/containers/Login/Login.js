@@ -4,7 +4,7 @@ import Input from "../../components/UI/Input/Input"
 import Button from "../../components/UI/Button/Button"
 import * as actions from "../../store/actions/index"
 import Spinner from "../../components/UI/Spinner/Spinner"
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
@@ -62,7 +62,7 @@ class Login extends Component {
         }
 
         if (rules.isEmail) {
-            const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            const pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
             isValid = pattern.test(value) && isValid;
         }
 
@@ -148,7 +148,7 @@ class Login extends Component {
                         SWITCH TO SIGN UP
                     </Button> */}
                     <p>
-                        <Link to="/signup" className="link">
+                        <Link to="/signup" className="switchLink">
                             SWITCH TO SIGN UP
                         </Link>
                     </p>

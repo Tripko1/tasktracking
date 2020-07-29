@@ -7,6 +7,8 @@ import * as serviceWorker from './serviceWorker';
 
 import authReducer from "./store/reducers/auth";
 import userDataReducer from "./store/reducers/getUserData";
+import projectsReducer from "./store/reducers/projects";
+import usersReducer from "./store/reducers/users";
 
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from 'react-redux'
@@ -16,6 +18,8 @@ import thunk from 'redux-thunk'
 const rootReducer = combineReducers({
   auth: authReducer,
   userData: userDataReducer,
+  myProjects: projectsReducer,
+  users: usersReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -15,7 +15,7 @@ class DropdownMenu extends Component {
             <div className="dropdown">
                 <DropdownItem
                 >
-                    <div>
+                    <Link to="/editProfile" className="dropdownLink">
                         <Avatar
                             size="50"
                             round={true}
@@ -23,13 +23,11 @@ class DropdownMenu extends Component {
                             name={this.props.name + " " + this.props.username}
                             border={50}
                         />
-                        <Link to="/editProfile" className="link" style={{ marginLeft: "10px" }}>
-                            <strong>My Profile</strong>
-                        </Link>
-                    </div>
+                        <span style={{ marginLeft: "10px" }}><strong>My Profile</strong></span>
+                    </Link>
                 </DropdownItem>
-                <DropdownItem leftIcon={<Settings />}><div><strong>Settings</strong></div></DropdownItem>
-                <DropdownItem leftIcon={<Logout />}><Link to="/logout" className="link"><strong>Logout</strong></Link></DropdownItem>
+                <DropdownItem leftIcon={<Settings />}><strong>Settings</strong></DropdownItem>
+                <DropdownItem leftIcon={<Logout />}><Link to="/logout" className="dropdownLink"><strong>Logout</strong></Link></DropdownItem>
             </div>
         )
     }

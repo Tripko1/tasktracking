@@ -1,10 +1,16 @@
 .Input {
-    width: 100%;
+    width:100%;
     padding: 10px;
     box-sizing: border-box;
   }
 
-  .Input ::placeholder{
+  .InputEdit{
+    width:100%;
+    padding: 0px 10px 20px 10px;
+    box-sizing: border-box;
+  }
+
+  .Input .InputEdit ::placeholder{
       color: teal;
   }
   
@@ -25,12 +31,29 @@
     display: block;
     width: 100%;
     box-sizing: border-box;
-    
+  }
+
+  .editInputElement{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    border-radius: 10px;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
   }
   
-  .InputElement:focus {
+  .InputElement :focus {
     outline: none;
     background-color: #ccc;
+  }
+
+  .editInputElement :focus{
+    outline: none;
+    background-color: red;
   }
   
   .Invalid {

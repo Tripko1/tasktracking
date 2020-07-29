@@ -4,6 +4,15 @@ import "./Input.css";
 const input = (props) => {
     let inputElement = null;
     let inputClasses = "InputElement ";
+    let input = "Input"
+
+    if (props.editInput) {
+        input = props.editInput
+    }
+
+    if (props.editInputElement) {
+        inputClasses = props.editInputElement
+    }
 
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses = inputClasses + "Invalid ";
@@ -58,7 +67,7 @@ const input = (props) => {
     }
 
     return (
-        <div className="Input">
+        <div className={input}>
             <label className="Label">{props.label}</label>
             {inputElement}
         </div>

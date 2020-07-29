@@ -52,7 +52,7 @@ export const auth = (email, password) => {
             password: password,
             returnSecureToken: true,
         };
-        axios.post('api/login', authData)
+        axios.post('/login', authData)
             .then(response => {
                 let expirationDate = new Date(new Date().getTime() + response.data.token.expires_in);
                 localStorage.setItem("token", response.data.token.access_token);
@@ -131,7 +131,7 @@ export const registration = (name, username, email, password, password_confirmat
             password_confirmation: password_confirmation,
             returnSecureToken: true,
         };
-        axios.post('api/register', regData)
+        axios.post('/register', regData)
             .then(response => {
                 console.log(response);
                 dispatch(registrationSuccess());

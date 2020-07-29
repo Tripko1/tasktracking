@@ -1,0 +1,40 @@
+.ChangeProfileData{
+    width: 50%;
+    margin: auto;
+    padding: 20px 0;
+    background-color: #ccc;
+    box-shadow: 0 2px 3px #484a4d;
+    border-radius: 10px;
+}
+
+.LabelSpan{
+    margin: 0px 10px;
+    color: teal;
+}
+
+.centerButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 600px){
+    .ChangeProfileData{
+        width: 80%;
+        margin: auto;
+        padding: 20px 0;
+        background-color: #ccc;
+        box-shadow: 0 2px 3px #484a4d;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 400px){
+    .ChangeProfileData{
+        width: 90%;
+        margin: auto;
+        padding: 20px 0;
+        background-color: #ccc;
+        box-shadow: 0 2px 3px #484a4d;
+        border-radius: 10px;
+    }
+}

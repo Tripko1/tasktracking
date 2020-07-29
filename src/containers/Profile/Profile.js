@@ -4,7 +4,8 @@ import * as actions from "../../store/actions/index";
 import Avatar from "react-avatar";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
-import ChangePicture from "../../components/ChangePicture/ChangePicture"
+import ChangePicture from "../../components/Profile/ChangePicture/ChangePicture";
+import ChangeProfileData from "../../components/Profile/ChangeProfileData/ChangeProfileData";
 
 import "./Profile.css"
 
@@ -86,6 +87,9 @@ class Profile extends Component {
                         selectedFile={this.state.selectedFile}
                         cancelImageHandler={this.cancelImageHandler}
                         upload={this.upload}
+                    />
+                    <ChangeProfileData
+                        userData={this.props.userData}
                     />
                 </Aux>
             )

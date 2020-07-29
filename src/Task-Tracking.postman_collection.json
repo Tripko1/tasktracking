@@ -1,0 +1,468 @@
+{
+	"info": {
+		"_postman_id": "55dfe9fe-5337-42b1-85f5-a245a1877615",
+		"name": "Task Tracking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Edit Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmI2NjY1YTVmZmJkZjBmMGUxM2I5ODMyNDQyNmIzYjFmNjE2NjA1YmMzYTVmMThjMDFhOWNlMjhhOWJhNTExNWQwYjI0NmE1ZmZjMjNkMjQiLCJpYXQiOjE1OTUyNDQwMDEsIm5iZiI6MTU5NTI0NDAwMSwiZXhwIjoxNjI2NzgwMDAxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cr-D7KzggG2Gi3icmpEgjZJ1EKP-0eh4BsDtZpuQmeTuMG4q7S5Xz_MfXSWUsNmUg6zU0CE-P2NIuy_3uism0b1ClCphA5aU87ekwk1YxH-BLkDczpnGlkGV8qNx50MyS5fUjOlK2h-RtHlfsBH9Ih0bCCWoDQBUbNaAEjmG_E2HRAINlBPnmDTIcfTRzbaOAv5UzzDGsfzikcL3Cr9eBPCCvf6MOqjhTUR21rBDcrwvP0CFD8V8bpvD32kqj4KGSKAAM8MQGA4DTU-96W9Bin2Xb_lOHbPTWDY1SuBjVhEw7kspcAyjIfPJupYQ7dVSCQMyZbfz_zLcpLv6POREdtF6XRsB1V1v2lo7sOhMZ2y4arpHAGpIU-J50Rd81N1GyzGYPDzDGuzkbookyy8mr5ytn4N1mgf_DE-hGPjgCQUi6SvoXi7JAkRObPDLWakHFSyDBc-Dp1zYiLHOvCjWUqfwJ3urWxZ6s7EZbu-9u34BlVhrMeljAb80eBsIihFnI4wNx5HHRiJefu18CRrgkat04tePDwdfj55tLCGzKmcNMS6HIxLwweNrBAXH5J0JmE0VMAzmJrJ9PjjsDXDI4CSXW4NTX9PlQ-an8xLLOD4o91H0ZTCPVG-c7pYvBIF0voVPt-rnbQhRSDanV1t22HmGPcyTCTWQQR1zmEBfoXI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Stevan Tosic\",\n    \"username\" : \"Tos\",\n    \"bio\" : \"ovo je bio za usera\",\n    \"password\" : \"123456\",\n    \"password_confirmation\" : \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "Get Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjdkMjFmZTlhYmJiMWE2OGQyMjczZDIyYjZkZDA3MTFlOGViYWMxY2FmNTMyNWQ2ZDkxZDE2ZDlmNjMwZWYwM2Y0MDA4M2QwZGVlMjZmYmMiLCJpYXQiOjE1OTU0MTc5ODgsIm5iZiI6MTU5NTQxNzk4OCwiZXhwIjoxNjI2OTUzOTg4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.l-beiKq058t2KImcVTxAq9wnvlvhkcUS9-mV6vbfoNIOUckz-0-HswDiHeLaJLmNVm8UeroEDyXrqU6poNxd4U-gXqA8WNlkdn8oi2D2QqNACCM9dIUUHiUtSwC7jBcBlden9E1W5v8NBZvCZtGfuKWtYjNt0Lr4wluov5E5rrNy7ZBo-2gVBU7TU0qWCpLu-mgqo2LfQ8AUtdSsR2bSCGrUueatjw9f5Qwotk0IQJO9qH1Yh1ut9G3wbEEtIm_NtuHSynuqWGikjKXeQaZqn3fKC4xj_vGkbt1BbpGPHZFYOVkCNpzr7ULScgWW9u7QMrBNBsclNYDlnBuNDGyyb22f3cc6ubIoEnCfc1vuSjP_9qO0mMbD-xjAnyvFeHEU3u1ySVFHdbgjTioIDtTmzaZ5K_wBz3ju7s4EbsrUBL1DiRbzBxciNfZ5yh3RH83IUeVgbudQuDXkGJDtXxt_cvH_bLd77ncOjcxwJRxnrYaXyeC3UZryi0-amEgWjvrKgP9oDiEoafvyvYi5SEWYLhPKDw74rXOSlVSW99y6ZBhNow0oSW9AIHaaOlYenDXpjTNHF4ao0ciO6ZtIlt2Su6cwS4kQmFRamw7CTbnWdgg3wWLSaegCn_whbKA-RPiKmxemmgR8r8Hu5QExd8iMp1RuJ3MELYfeWsNPgW_TiyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/Je?include=checklists, tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"Je"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "owner, users",
+									"disabled": true
+								},
+								{
+									"key": "include",
+									"value": "checklists, tasks"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGQ5ZTIwOTYwMzAyNmQzYWFkMjQwOTQ1NDc4MjYyNzMwYzA5ZWEyOGRhY2Q3ZWIxZWMxMWY5NmZhMWU5NjczZGZmMGExN2U4ZGYxZmY0YzQiLCJpYXQiOjE1OTUyNTQyNzIsIm5iZiI6MTU5NTI1NDI3MiwiZXhwIjoxNjI2NzkwMjcyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.iMh-fLHmTwq2WW5KUQ4D488WUMg0TsjAT5EqyQeWyF6dYb8ZTLDhcTNhczqsmpsbZPcw4QyS7auvd47BbW0ldpZKuLACXdgkBZsKGP_X97g1JUbv7uAET6tzDhDbO-BgkmK3HqLHl0hvoIu83tKLZvvZbwe3YiVVouo2Br8B9oEJtRisUYlyHBxq4Z4aINGL_7aHBdUplAxqzA82KzlMkAPdX-4UwfNGzDiLf8e_BzQ9WibSOd5dClnCy8EoCnN9o_IVeEVhcK8e8V9VzXDJ0gvL5PAp5zIc-6BgBdfPJdP8cDbOtvGgoYjbI5BC-W_8uTvSpZaWRiGOx28N8yYnXWF0SX1EjDTXgYH--s4Z3uaHjPw4KWPQaY9gtNeXNaIwKnp9Od96PSoAngTtl9hKugYjJZ6qZ7_RkrGMB12-62XASOABNvR538AOK4t8ZLUkdhZNZkZkoLYrCLgQxZOdKkDj1tXZ542fvGf6WhwqzFXSU2HhgX2COiqFlLTvrAS335ghxMQf4ePAfniXn2T6jhx5k1IV8jpv8T7JkRle5yRmvyIohYLorLSODFTT6DKynCaeiBOrJ4YUpGks-CzwbTox6o6ytho5NdF_MSx7Qe0y204KeMMDXk5NaPQnFR4MNFeVHdY6dS4hotvH6TA3wyMHLzNaFEFHQRhk8IBkoEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Chechlist",
+			"item": [
+				{
+					"name": "Create Checklist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGUyYTUyYTRiNDFhZDgyYTE0YWQ2MWViZGFkZjFiMmUzNjhkZGUyZGRkZjU5Y2Y1ZjM1ODhmZjYzZmEwOWE5YWU4OTIyOGY4ZjIxNWQ5ZmIiLCJpYXQiOjE1OTUzMjgwNTYsIm5iZiI6MTU5NTMyODA1NiwiZXhwIjoxNjI2ODY0MDU2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.NkMyMTbaJJ9nDsjEl1Wo6YVxlDLS26CnFQMbT7LrRBcZYKFLp0di4FmPDbo4_kjMm7EkTyYVRhY-tWcdFp1YqepoBufFRl_kPX8kTCqozcqRaN4096Lb_KlQCJBB1zodOzyrjtvKO1DL0h5XK8jKj2bm7LgluJHAoiD3YVQdcCjyKtEZs_oxgHxnx3PTkJ_PM5k8pqXFzSG7FWK0r6mNwt7pjlWMzdnKQGJuFKVtie3I46JznFMeHygLzrk-1TYe4NN9TbvcNBK4hNojYAvaHnvjwTQLr0SA4h7yYwKmgxo2GtG2Jlvx4x-JayzDDGdJGPZgwQEIw-5up2ldZNXnWESzL41vHwejcXGOt8Ek-Z09ZX9CGxHiB2CJkDc4lEBgkgATVpNL5I3CSvPYG-fITTIxLlHz8KJQRaGfeqhbK0XW5iT_7mRVFvdF4GptElPTlVzPAdfrgxNj4igaRB06bw0zbohfIyyKKLdOsmmYuCKKYE3O8UyQgJgrIQP4dGGmLJ8PLlgCCqBTMW0pQdmGEwa4jMHraiRMrwOAcPpEAJrz0ih1QvJMiS5LSw4v4ZVFuK9dTDVWtF2JRdFAZm7PKeMObUX_8nU-1uY5qHBM1MdO9-Nb9ECgdY8Yc1EYcZeE0TZqaCTFqVYnW_gNWLyXtoop42nd8XZZjzXwZ_NT1JE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"todooo\",\n    \"project_id\" : \"1n\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/checklists",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checklists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Checklist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGQ3ZTZlZGVjMjM2MzFmN2Q0ZjIyMTY4NjFkOWI5ZWY5ODI1ZDJkNDg2ZWY2ZGM1Y2Y4MDQ1MWYwMGRkMjE3MWRiYTBhNTQzNTI5MDdmMmMiLCJpYXQiOjE1OTU0MTQyMzIsIm5iZiI6MTU5NTQxNDIzMiwiZXhwIjoxNjI2OTUwMjMyLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.MA2HeHWR0isb62LhYG_tWFVuaZVjlD7X85mB1HipNsfkh4HSM6uYdJehrWxsKy12sOnNIhaRgDOg4-4PV7_ZImpL8NIXCcQEPh4Zri4tdkLk1Cdo-tYfoNAAHYGcrAQJ1HkbvbPE956Z3bPYYIPWAfU8TB9BQ9vKFswVh05mHS--pd2ZHnCGKZg4JTGxOAXvo2H1HkkupGscgomBywoqgkT4Tarng4-k8j7DnNHi6sxk15fRDDi69c3uIPDj-cjok9rdlCW9JpPn8v2hkTIgZJ62KikqwHT8f8Ig7RjiZ4HWO-ahYaXZwXEBvW_KIb7Lz-7Ht1MX_1DS-OfA1ukF7tCvsB4zl8ZSNYV9lti2A2Kj8SYhPQI6QtwFCDmn3D1Lt9R6LwMkbr4tiB7Pz9gVKxpns4ptLcfO9y6d6YvUvRCDLqN5J66vWuLq4xjoheKBsXZJoMgLk1eR4wmxL7NqZJumk7oouJ5O_D6Q7tHXmrdCMGnmetA46z-RIgBUlPq8Pk_3iWOzktIww9cYGojRTgykhBg-rvWShV9Bv1kMs8E-p78pZVEJPdoeK76QiQGEfoUAKD-3aserXm2cYOgExngB_GFNCYU-530iBHePmR4aOqzLdy7ISqQp7OqvRG47dsaqVWON307soM5ZdjvuUG4gfOxqXg1vxoKO3GE6Zdg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/checklists/1n",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checklists",
+								"1n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Checklist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODYzNjYzZDAwYWJlZTEzYTQ0YjMxYWY3MTkzZGM1MDFlNWJkMDJiZDQxZjJhNjZjNjQ0MjNiMjU3MmJkZTI0NmEyYWEyMmI4OTA3NjFkMDQiLCJpYXQiOjE1OTU0MTYxMTcsIm5iZiI6MTU5NTQxNjExNywiZXhwIjoxNjI2OTUyMTE3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.fPj95iX4NTnUoTq4M2tHMl0Te8--AKPypD7CI9tWf2gBCuoKdUf_l74A--G9_7Ace4CVtE83UI0j-t7UxcpjAePL_TGIkMyG7Xu1rIyH-xC-ZvYSSD--lj5eMqZfkT6OSjqn6hlT-M2iNE4qOK0_g_UZH0vPXiRvK7ztOKoRA2mxpWGAzLeLhOYfwjLsUMnelXCC1VPKa95Cr2RvUD_wVWeiMHIzUV54Dc7qqsnLsP2ThrGUGl0i6T1yMOMdCMrF7zbHw6s63p-mDFnJVCxJRG0nYXh9MvoC6nB-OZ3rpelaOdDB8rV3uQVZGcsI-V7CQzLVEf13ogCcYysu1K3YRivdyzJHjnotnh1E4ocfHkUkjWhc_d7w3KVXZLIZmqgjXO1n_pPn0RrfT8rm2RD7sP7hX2EwEU9GwQ3Ub6w2EcrKCzuotrikPxHS-JatRBypQS2AZ07FpTeiLogHFhgovi19lQtuSL_N8WrVUGgoe_OHLCyOk0Hoy7Yann8Ldupqgf2xg6whCurU_Bzfuwdp7Kyg2_COgX3Me0PomNI2crdLrrIyqvJFD2HfvKIujZKRfwSamgoMZngKjaM2bTfKY1t3hrs3Aal3mX2hMXW__zQvwY5a1w2HUsN1dq25JsJ8jAKRz0EyDgVIglMqJagBIaxOJ7w5QteTGDEkpu16Xy4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"todo2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/checklists/8v",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checklists",
+								"8v"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Checklists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODIxODA0MGVhOGQ5M2Q1MzBiNjA0YzdhNzIzNDY2NGQ4YzFkMDE0MjdjNzNiN2Y1N2IwN2FjYmQ2YTA5YmVkMWVjNzI3YWI5NWNlMGU5MDciLCJpYXQiOjE1OTU0MTYxNTAsIm5iZiI6MTU5NTQxNjE1MCwiZXhwIjoxNjI2OTUyMTUwLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.l3KhbiXpLMvBavUf2Kgul6-ItaW5VXma4GAjIjfdK-BJZErmiQTku4_Jm7DGeKnyFh2wsgFkluXTF0anGa0ygHllhddf2SV6Z5gYFP-d0eEh3OlslfkS0ydQxsvifEiah3EIlCOS7vFLA5qJVEqy3n1IVjDB9MnfKcnxOPNAC6cjp5QzEZhv3545MojC0GzgXzP2z1V-YurYxMXbvdbVInNmxBpEHxysCkkdU1U784UjYjqasIQZrGYZAZpwlQSWM_BonWXci_p_BQinp29j8sWrp6NdZeOwp2TzfUQDF8oy0orcmTPh1CYOIYIYNK4ixW63IEhgw73g4lSGz54Pvk3iSPJTV66r40drAeLK_qoN1J63PlJyCHqjhepKAzJFJgINKrDRO_BdQNGqAkemfgjbaOj3Eze0KrGK9lLqnftNp1gYUER9TcWeRlgVIM5f1fYUG2PIs0xg-WoOpJwBdKSE6s4XDqhIAq4UA0SeQ46Caz-jhRUwlUgNgYgwojrnErLDCx7KNr_IT6ZGNrDr9i4f8nYKxXKga7uMQ72anDxLEx7EIm260-DBREOrFs2u8oYKZ3Xw5kGJsEh-V3np_Jj6P2s9GK7qNvnVKPQY-BpjfBClv19yoSHacV6sA4u3_fYVYFkjDdIYEupmoSY_SRx_xJZoL8rch1qnwlYaYfY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/checklists/1n",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checklists",
+								"1n"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjdkMjFmZTlhYmJiMWE2OGQyMjczZDIyYjZkZDA3MTFlOGViYWMxY2FmNTMyNWQ2ZDkxZDE2ZDlmNjMwZWYwM2Y0MDA4M2QwZGVlMjZmYmMiLCJpYXQiOjE1OTU0MTc5ODgsIm5iZiI6MTU5NTQxNzk4OCwiZXhwIjoxNjI2OTUzOTg4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.l-beiKq058t2KImcVTxAq9wnvlvhkcUS9-mV6vbfoNIOUckz-0-HswDiHeLaJLmNVm8UeroEDyXrqU6poNxd4U-gXqA8WNlkdn8oi2D2QqNACCM9dIUUHiUtSwC7jBcBlden9E1W5v8NBZvCZtGfuKWtYjNt0Lr4wluov5E5rrNy7ZBo-2gVBU7TU0qWCpLu-mgqo2LfQ8AUtdSsR2bSCGrUueatjw9f5Qwotk0IQJO9qH1Yh1ut9G3wbEEtIm_NtuHSynuqWGikjKXeQaZqn3fKC4xj_vGkbt1BbpGPHZFYOVkCNpzr7ULScgWW9u7QMrBNBsclNYDlnBuNDGyyb22f3cc6ubIoEnCfc1vuSjP_9qO0mMbD-xjAnyvFeHEU3u1ySVFHdbgjTioIDtTmzaZ5K_wBz3ju7s4EbsrUBL1DiRbzBxciNfZ5yh3RH83IUeVgbudQuDXkGJDtXxt_cvH_bLd77ncOjcxwJRxnrYaXyeC3UZryi0-amEgWjvrKgP9oDiEoafvyvYi5SEWYLhPKDw74rXOSlVSW99y6ZBhNow0oSW9AIHaaOlYenDXpjTNHF4ao0ciO6ZtIlt2Su6cwS4kQmFRamw7CTbnWdgg3wWLSaegCn_whbKA-RPiKmxemmgR8r8Hu5QExd8iMp1RuJ3MELYfeWsNPgW_TiyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Prvi Task\",\n    \"description\" : \"opis\",\n    \"checklist_id\" : \"Je\",\n    \"project_id\" : \"Je\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2JjODZiZTA2MDYwNjJiZmI5OGE1NTEzNjg1N2JlNmVlMTIwYmRhMWFlYjdjZjE4YWE4YzE5MzJhNjQ0YmRmODlmZGNlYzcxNWU0NmEzNTgiLCJpYXQiOjE1OTU0MTk0MTMsIm5iZiI6MTU5NTQxOTQxMywiZXhwIjoxNjI2OTU1NDEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.YaTYdWx53lIerMZ8LKRxAEPN0b7_j4Q-ccT63nMoe9J5eSdK7w-5b76QaB6gZnAhEUon4B_i3an7aOfu0OZ1lw1qgh8fJHokY6cufwHYNHKeiEpRyMr5Tbg02K6OJZE06BdfH6JSuPirFfQWJJPUCnyER3SkK6EzMP3EMwanJtDEQDWCQk5hcTrchlWGZv3iDhrzF4oaWJBfxzlm5QZHYxipo31jATP3YndkblPuGkDY7b9g_9tgMZHeyazYiyncs2p7VXa0aMCT6uoMt30B_D2pFhzhNi19avDUmt83c-dbot4pGmTYK1SZ5FEyqYtX_9dEkRTsRgoWMWUWh88XjaPdOisp6rKg8ZdO94h5LJMQnxETH6-EY30wEnKuARI7U5xvzUNtZGY6a_vsIhTsh_ah_aWhwSYQjSoevRqIqz4sVapmSK6R0h5hLq9xGjxviSJlBayGAQ4_BjRpSSZIwcFwn865p7TSZUhofd-ELRlUXEfoECWyP-Q89vbiUjYL8ZlLS0EYJTkgewX-EnZkgeiVjrcyB6tQnUvH7SkpHrnSXkeMzpPE4Sab8l11pbF5BKs1R_xRpgQTCOwcj8s0QbLW3f5euTRNhEki7rXPgeiXftFn_r8FX02jtuMQk1sXG-sk-ASFM4eOoAbXV4-1R5xmr9FKY8tJq04j3ZA1Vk0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/ND?include=users,checklist",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"ND"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "users,checklist"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2JjODZiZTA2MDYwNjJiZmI5OGE1NTEzNjg1N2JlNmVlMTIwYmRhMWFlYjdjZjE4YWE4YzE5MzJhNjQ0YmRmODlmZGNlYzcxNWU0NmEzNTgiLCJpYXQiOjE1OTU0MTk0MTMsIm5iZiI6MTU5NTQxOTQxMywiZXhwIjoxNjI2OTU1NDEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.YaTYdWx53lIerMZ8LKRxAEPN0b7_j4Q-ccT63nMoe9J5eSdK7w-5b76QaB6gZnAhEUon4B_i3an7aOfu0OZ1lw1qgh8fJHokY6cufwHYNHKeiEpRyMr5Tbg02K6OJZE06BdfH6JSuPirFfQWJJPUCnyER3SkK6EzMP3EMwanJtDEQDWCQk5hcTrchlWGZv3iDhrzF4oaWJBfxzlm5QZHYxipo31jATP3YndkblPuGkDY7b9g_9tgMZHeyazYiyncs2p7VXa0aMCT6uoMt30B_D2pFhzhNi19avDUmt83c-dbot4pGmTYK1SZ5FEyqYtX_9dEkRTsRgoWMWUWh88XjaPdOisp6rKg8ZdO94h5LJMQnxETH6-EY30wEnKuARI7U5xvzUNtZGY6a_vsIhTsh_ah_aWhwSYQjSoevRqIqz4sVapmSK6R0h5hLq9xGjxviSJlBayGAQ4_BjRpSSZIwcFwn865p7TSZUhofd-ELRlUXEfoECWyP-Q89vbiUjYL8ZlLS0EYJTkgewX-EnZkgeiVjrcyB6tQnUvH7SkpHrnSXkeMzpPE4Sab8l11pbF5BKs1R_xRpgQTCOwcj8s0QbLW3f5euTRNhEki7rXPgeiXftFn_r8FX02jtuMQk1sXG-sk-ASFM4eOoAbXV4-1R5xmr9FKY8tJq04j3ZA1Vk0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"update task title\",\n    \"description\" : \"update task description\",\n    \"checklist_id\" : \"ND\",\n    \"users\" : [\"ND\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/tasks/ND",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"ND"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "test",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYTExZjgwZTVlMGFlNmU5YTc3NzhiOTNhY2EzZTc5ZDc0YzkyYzVhNTQ3MTQ4NGNkMmE3MzAxNDRkNzQ0ZDcxNTYyNzI5OTYwNzBhYmU1MmMiLCJpYXQiOjE1OTUwODYyODQsIm5iZiI6MTU5NTA4NjI4NCwiZXhwIjoxNjI2NjIyMjg0LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.HUyeokmSKeNFGP2A_Giiuu4C1rwt6-j-GdAIlWRzFrzK33i8aOblWOO4j5mewjpVbi2Tn5ZsZpMNZOc5bRFIaEtc0sT0HrBqTsLUCr3Cen607ApAFQo1iqandZTGbV22gdBHMoTW7OtSEaDw55uiG7UOfiBLtFzgM4nOuAS421dkD85nbSKfq77E7DaYRLW72w3egkieFsir-cOrdUyaH09L9UDkOIgDkzFSBFHn5At0S9tgqVyIPBmPv9G_eKSqT4t5HPp9UTsRQOIPgiV9CqNds476U9ZQ-ujCsT0rwW8n6sl-reHeL4XpO0MAOst1qpJUq2XaLCMFYmq83rglMVOXdPywZaNJdG2GBY4_5UaDWvQkkjDj2m1HvkVDZ51vuAnxojKvHntcvCcs-f8vLR2jEFmoVM539YatpiGVsvlMDurpsW4Ldk6JQKVfOiaX9HSK-qV1-Q_uiutmXWd-LE8hel_r6Tb4P3-4XF4Ce72DxX0KUkddm9GgafYXrE3x7lLHQNKXtaEJ7xCHLx8fQczL9NMsZGs_BtKPduMUTMknIpn4UQTHCIkYWGaW4SIVI5YD2B7fRqn7vdnbwN9D7_7a3AOocci7vTPaD2m5tHnKOLRCb0qI1a7fp9F5XziTAVQ03Quk-aZJZUf_MsD5c7U585x6zM8gffh7fpUxwW8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"12\",\n    \"user_id\" : 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api.tasktracking.local/api/",
+					"protocol": "http",
+					"host": [
+						"api",
+						"tasktracking",
+						"local"
+					],
+					"path": [
+						"api",
+						""
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "user",
+							"disabled": true
+						},
+						{
+							"key": "search",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f489ffc7-4c52-4933-94ae-15ae5f1c4b21",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8e7e5887-0517-4d0a-bcba-1f4d7928cbcc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3111bfd4-8bcb-4498-ab99-833005550c16",
+			"key": "url",
+			"value": "http://api.tasktracking.local/api"
+		},
+		{
+			"id": "33806392-6f63-49e6-b3dd-d2fcbc273efb",
+			"key": "project",
+			"value": "1"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

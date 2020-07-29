@@ -15,6 +15,7 @@
     background-color: teal;
 }
 
-.link{
+.dropdownLink{
+    color: black;
     text-decoration: none;
 }

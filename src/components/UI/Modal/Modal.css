@@ -2,21 +2,19 @@
     position: fixed;
     /* z-index: 500; */
     /* z-index: -1; */
-    background-color: #ccc;
-    width: 70%;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
-    left: 15%;
-    top: 30%;
+    background-color: transparent;
+    width: 50%;
+    /* padding: 16px; */
+    left: 25%;
+    top: 50px;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
   }
   
   @media (min-width: 600px) {
     .Modal {
-      width: 500px;
-      left: calc(50% - 250px);
+      width: 300px;
+      left: calc(50% - 150px);
     }
   }
   

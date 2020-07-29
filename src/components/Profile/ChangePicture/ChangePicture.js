@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./ChangePicture.css";
 import Avatar from "react-avatar";
-import Button from "../UI/Button/Button";
-import Aux from "../../hoc/Auxiliary/Auxiliary";
+import Button from "../../UI/Button/Button";
+import Aux from "../../../hoc/Auxiliary/Auxiliary";
 
 class changePicture extends Component {
     render() {
@@ -31,7 +31,7 @@ class changePicture extends Component {
             img = (
                 <Aux>
                     <div className="changeImage">
-                        <img src={this.props.selectedImage} className="insertImage" />
+                        <img src={this.props.selectedImage} alt={this.props.userData.username} className="insertImage" />
                     </div>
                     <div className="changeImage">
                         <Button btnType="Cancel" clicked={this.props.cancelImageHandler}>Cancel</Button>

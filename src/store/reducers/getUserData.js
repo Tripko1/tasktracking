@@ -8,10 +8,11 @@ const initialState = {
         name: null,
         username: null,
         email: null,
+        bio: null
     },
     error: null,
     loading: false,
-    loadingImg: false
+    loadingImg: false,
 }
 
 const userDataStart = (state, action) => {
@@ -26,6 +27,7 @@ const userDataSuccess = (state, action) => {
             name: action.name,
             username: action.username,
             email: action.email,
+            bio: action.bio
         }
     })
 }
@@ -44,15 +46,33 @@ const uploadFail = (state, action) => {
 
 const uploadSuccess = (state, action) => {
     return updateObject(state, {
-        loadingImg: false, userData: {
+        loadingImg: false,
+        userData: {
             id: action.id,
             img: action.img,
             name: action.name,
             username: action.username,
             email: action.email,
+            bio: action.bio
         }
     })
 }
+
+const getUsersStart = (state, action) => {
+    return updateObject(state, { loadingUsers: true })
+}
+
+const getUsersSuccess = (state, action) => {
+    return updateObject(state, {
+        loadingUsers: false,
+        users: action.users
+    })
+}
+
+const getUsersFail = (state, action) => {
+    return updateObject(state, { loadingUsers: false, error: action.error })
+}
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -68,6 +88,12 @@ const reducer = (state = initialState, action) => {
             return uploadFail(state, action);
         case actionTypes.UPLOAD_IMAGE_SUCCESS:
             return uploadSuccess(state, action);
+        case actionTypes.GET_ALL_USERS_START:
+            return getUsersStart(state, action);
+        case actionTypes.GET_ALL_USERS_SUCCESS:
+            return getUsersSuccess(state, action);
+        case actionTypes.GET_ALL_USERS_FAIL:
+            return getUsersFail(state, action);
         default: return state;
     }
 }

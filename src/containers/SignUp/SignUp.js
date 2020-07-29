@@ -78,6 +78,7 @@ class SignUp extends Component {
                 validation: {
                     required: true,
                     minLength: 6,
+                    confirmPassword: true
                 },
                 valid: false,
                 touched: false,
@@ -105,13 +106,17 @@ class SignUp extends Component {
         }
 
         if (rules.isEmail) {
-            const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            const pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
             isValid = pattern.test(value) && isValid;
         }
 
         if (rules.isNumeric) {
             const pattern = /^\d+$/;
             isValid = pattern.test(value) && isValid;
+        }
+
+        if (rules.confirmPassword) {
+            isValid = value === this.state.controls.password.value && isValid;
         }
 
         return isValid;
@@ -197,7 +202,7 @@ class SignUp extends Component {
                         <Button btnType="Success">SUBMIT</Button>
                     </form>
                     <p>
-                        <Link to="/" className="link">
+                        <Link to="/" className="switchLink">
                             SWITCH TO LOG IN
                         </Link>
                     </p>
