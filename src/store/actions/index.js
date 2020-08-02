@@ -10,6 +10,7 @@ export {
 export {
     getUserData,
     uploadImage,
+    getEditProfile
 } from "./getUserData"
 
 export {
@@ -18,5 +19,6 @@ export {
 
 export {
     getMyProjects,
-    createProject
+    createProject,
+    getAllChecklist
 } from "./projects"

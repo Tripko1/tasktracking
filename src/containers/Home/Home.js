@@ -26,6 +26,7 @@ class Home extends Component {
         this.setState({ show: false })
     }
 
+
     render() {
         let Homecontent = <Spinner />;
         let modalCreateProject = null;

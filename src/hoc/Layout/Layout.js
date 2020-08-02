@@ -29,7 +29,7 @@ class Layout extends Component {
                         setOpen={this.setOpen}
                     />
                 </div>
-                <main>{this.props.children}</main>
+                <main style={{ height: "100%" }}>{this.props.children}</main>
             </Aux>
         )
     }

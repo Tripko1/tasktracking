@@ -91,3 +91,48 @@ export const uploadImage = (token, image) => {
             })
     }
 }
+
+export const getEditProfileStart = () => {
+    return {
+        type: actionTypes.GET_EDIT_PROFILE_START
+    }
+}
+
+export const getEditProfileSuccess = (data) => {
+    return {
+        type: actionTypes.GET_EDIT_PROFILE_SUCCESS,
+        id: data.id,
+        img: data.img,
+        name: data.name,
+        username: data.username,
+        email: data.email,
+        bio: data.bio
+    }
+}
+
+export const getEditProfileFail = (error) => {
+    return {
+        type: actionTypes.GET_EDIT_PROFILE_FAIL,
+        error: error
+    }
+}
+
+export const getEditProfile = (token, data) => {
+    return dispatch => {
+        dispatch(getEditProfileStart());
+        axios.put("/users", data, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(response => {
+                dispatch(getEditProfileSuccess(response.data.data))
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch(getEditProfileFail(error.response))
+            })
+    }
+}

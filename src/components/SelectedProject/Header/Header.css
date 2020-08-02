@@ -1,0 +1,50 @@
+.board-header{
+    height: auto;
+    padding: 8px 4px 4px 8px;
+    position: relative;
+    background-color: rgba(204, 204, 204, .3);
+}
+
+.board-header-btn{
+    display: inline;
+}
+
+.board-header-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.board-name-input{
+    background-color: white;
+    border-radius: 5px;
+    border: 0;
+    font-weight: 700;
+    font-size: 18px;
+    height: 32px;
+    width: 350px;
+    margin: 0;
+    padding: 0 12px;
+}
+
+.board-header-form :focus{ 
+    background-color: #ccc;
+}
+
+@media(max-width: 446px){
+    .board-header{
+        height: auto;
+        padding: 8px 4px 4px 8px;
+        position: relative;
+        transition: padding .1s;
+        background-color: rgba(204, 204, 204, .3);
+    }
+    .board-header-form{
+        min-width: 300px;
+    }
+
+    .board-name-input{
+        max-width: 200px;
+    }
+}

@@ -6,48 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Edit Profile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmI2NjY1YTVmZmJkZjBmMGUxM2I5ODMyNDQyNmIzYjFmNjE2NjA1YmMzYTVmMThjMDFhOWNlMjhhOWJhNTExNWQwYjI0NmE1ZmZjMjNkMjQiLCJpYXQiOjE1OTUyNDQwMDEsIm5iZiI6MTU5NTI0NDAwMSwiZXhwIjoxNjI2NzgwMDAxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cr-D7KzggG2Gi3icmpEgjZJ1EKP-0eh4BsDtZpuQmeTuMG4q7S5Xz_MfXSWUsNmUg6zU0CE-P2NIuy_3uism0b1ClCphA5aU87ekwk1YxH-BLkDczpnGlkGV8qNx50MyS5fUjOlK2h-RtHlfsBH9Ih0bCCWoDQBUbNaAEjmG_E2HRAINlBPnmDTIcfTRzbaOAv5UzzDGsfzikcL3Cr9eBPCCvf6MOqjhTUR21rBDcrwvP0CFD8V8bpvD32kqj4KGSKAAM8MQGA4DTU-96W9Bin2Xb_lOHbPTWDY1SuBjVhEw7kspcAyjIfPJupYQ7dVSCQMyZbfz_zLcpLv6POREdtF6XRsB1V1v2lo7sOhMZ2y4arpHAGpIU-J50Rd81N1GyzGYPDzDGuzkbookyy8mr5ytn4N1mgf_DE-hGPjgCQUi6SvoXi7JAkRObPDLWakHFSyDBc-Dp1zYiLHOvCjWUqfwJ3urWxZ6s7EZbu-9u34BlVhrMeljAb80eBsIihFnI4wNx5HHRiJefu18CRrgkat04tePDwdfj55tLCGzKmcNMS6HIxLwweNrBAXH5J0JmE0VMAzmJrJ9PjjsDXDI4CSXW4NTX9PlQ-an8xLLOD4o91H0ZTCPVG-c7pYvBIF0voVPt-rnbQhRSDanV1t22HmGPcyTCTWQQR1zmEBfoXI",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\" : \"Stevan Tosic\",\n    \"username\" : \"Tos\",\n    \"bio\" : \"ovo je bio za usera\",\n    \"password\" : \"123456\",\n    \"password_confirmation\" : \"123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/users",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "Project",
 			"item": [
 				{

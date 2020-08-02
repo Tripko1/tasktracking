@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./ChangeProfileData.css";
 import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
+import { Redirect } from "react-router-dom"
+import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 
 class ChangeProfileData extends Component {
     state = {
@@ -45,6 +48,8 @@ class ChangeProfileData extends Component {
                 valid: false,
                 touched: false,
             },
+        },
+        changePassword: {
             password: {
                 elementType: "input",
                 elementConfig: {
@@ -75,7 +80,9 @@ class ChangeProfileData extends Component {
                 touched: false,
             },
         },
-        changeSomething: false
+        changeSomething: false,
+        btnPassword: false,
+        redirect: false
     }
 
     checkValidity(value, rules) {
@@ -108,7 +115,7 @@ class ChangeProfileData extends Component {
         }
 
         if (rules.confirmPassword) {
-            isValid = value === this.state.controls.password.value && isValid;
+            isValid = value === this.state.changePassword.password.value && isValid;
         }
 
         return isValid;
@@ -124,13 +131,66 @@ class ChangeProfileData extends Component {
                     event.target.value,
                     this.state.controls[controlName].validation
                 ),
-                touched: true,
+                touched: this.props.userData[controlName] !== null ?
+                    this.props.userData[controlName] !== event.target.value :
+                    "" !== event.target.value,
             },
         };
         this.setState({ controls: updatedControls });
     };
 
+    inputPasswordHandler = (event, controlName) => {
+        const updatedchangePassword = {
+            ...this.state.changePassword,
+            [controlName]: {
+                ...this.state.changePassword[controlName],
+                value: event.target.value,
+                valid: this.checkValidity(
+                    event.target.value,
+                    this.state.changePassword[controlName].validation
+                ),
+                touched: true,
+            },
+        };
+        this.setState({ changePassword: updatedchangePassword });
+    };
+
+    openPassword = (event) => {
+        event.preventDefault();
+        this.setState(prevState => {
+            return {
+                btnPassword: !prevState.btnPassword
+            }
+        })
+    }
+
+    submitEditProfile = (event) => {
+        event.preventDefault();
+        const data = {
+            name: this.state.controls["name"].value,
+            username: this.state.controls["username"].value,
+            bio: this.state.controls["bio"].value === "" ? null : this.state.controls["bio"].value
+        }
+        if (this.state.changePassword["password"].value !== "") {
+            data.password = this.state.changePassword["password"].value
+            data.password_confirmation = this.state.changePassword["password_confirmation"].value
+        }
+        this.props.onGetEditProfile(this.props.token, data);
+        this.redirectToHome();
+    }
+
+    redirectToHome = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+
     render() {
+        let redirect = null;
+        if (this.state.redirect) {
+            redirect = <Redirect to="/" />
+        }
+
         const formElementsArray = [];
         for (let key in this.state.controls) {
             formElementsArray.push({
@@ -139,14 +199,21 @@ class ChangeProfileData extends Component {
             });
         }
 
-        let touchSomething = true;
+        const formPasswordArray = [];
+        for (let key in this.state.changePassword) {
+            formPasswordArray.push({
+                id: key,
+                config: this.state.changePassword[key],
+            });
+        }
+
+        let touchElements = true;
+        let formPassword = null;
         let form = (
             formElementsArray.map((formElement) => {
-
-                if (touchSomething && formElement.config.touched && formElement.config.valid) {
-                    touchSomething = false;
+                if (touchElements && formElement.config.touched && formElement.config.valid) {
+                    touchElements = false;
                 }
-
                 return (
                     <div key={formElement.id}>
                         <span className="LabelSpan"><strong>{formElement.config.elementConfig.placeholder}:</strong></span>
@@ -167,10 +234,45 @@ class ChangeProfileData extends Component {
             }
             ))
 
+        let touchPassword = true;
+        if (this.state.btnPassword) {
+            formPassword = (
+                formPasswordArray.map((formElement) => {
+                    return (
+                        <div key={formElement.id}>
+                            <span className="LabelSpan"><strong>{formElement.config.elementConfig.placeholder}:</strong></span>
+                            <Input
+                                key={formElement.id}
+                                elementType={formElement.config.elementType}
+                                elementConfig={formElement.config.elementConfig}
+                                value={formElement.config.value}
+                                changed={(event) => this.inputPasswordHandler(event, formElement.id)}
+                                shouldValidate={formElement.config.validation}
+                                touched={formElement.config.touched}
+                                invalid={!formElement.config.valid}
+                                editInput="InputEdit "
+                                editInputElement="editInputElement "
+                            />
+                        </div>
+                    )
+                }
+                )
+            )
+        }
+
+        if (this.state.changePassword["password"].valid &&
+            this.state.changePassword["password"].value === this.state.changePassword["password_confirmation"].value) {
+            touchPassword = false;
+        }
+        const touchSomething = touchElements && touchPassword;
+
         return (
             <div className="ChangeProfileData">
-                <form>
+                {redirect}
+                <form onSubmit={this.submitEditProfile}>
                     {form}
+                    <Button btnType="Submit" clicked={this.openPassword}>Change password</Button>
+                    {formPassword}
                     <div className="centerButton">
                         <Button btnType="Success" disabled={touchSomething}>SUBMIT</Button>
                     </div>
@@ -180,4 +282,16 @@ class ChangeProfileData extends Component {
     }
 }
 
-export default ChangeProfileData;
+const mapStateToProps = (state) => {
+    return {
+        token: state.auth.token,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onGetEditProfile: (token, data) => dispatch(actions.getEditProfile(token, data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChangeProfileData);

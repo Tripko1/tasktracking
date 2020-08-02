@@ -83,3 +83,39 @@ export const createProject = (token, title) => {
             })
     }
 }
+
+export const getAllCheklistStart = () => {
+    return {
+        type: actionTypes.GET_ALL_CHECKLIST_START
+    }
+}
+
+export const getAllCheklistSuccess = () => {
+    return {
+        type: actionTypes.GET_ALL_CHECKLIST_SUCCESS
+    }
+}
+
+export const getAllCheklistFail = () => {
+    return {
+        type: actionTypes.GET_ALL_CHECKLIST_FAIL
+    }
+}
+
+export const getAllChecklist = (token, id) => {
+    return dispatch => {
+        axios.get("/checklists/" + id, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+}

@@ -10,7 +10,7 @@ const leftHomeSider = (props) => {
     return (
         <div className="home-sticky-container">
             <nav className="home-left-sidebar-container">
-                <div home-left-sider-container-item1>
+                <div className="home-left-sider-container-item1">
                     <ul className="home-left-sider-container-item1-ul">
                         <li className="home-left-sider-container-item1-ul-li">
                             <Link to="#" className="home-left-sider-container-item1-ul-li-link">

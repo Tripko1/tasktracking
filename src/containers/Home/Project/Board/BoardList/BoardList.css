@@ -1,0 +1,79 @@
+.board-list{
+    width: 272px;
+    margin: 0 4px 0 8px;
+    height: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.board-list-content{
+    background-color: #484a4d;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    white-space: normal;
+    border-radius: 10px;
+    border: 3px solid teal;
+}
+
+.board-list-form{
+    display: none;
+}
+
+.board-list-input{
+    background-color: white;
+    border-radius: 5px;
+    border: 0;
+    font-weight: 700;
+    font-size: 16px;
+    height: 28px;
+    width: 150px;
+    margin: 0;
+    padding: 0 12px;
+}
+
+.board-list-header{
+    flex: 0 0 auto;
+    padding: 10px 8px;
+    position: relative;
+    min-height: 20px;
+}
+
+.board-list-card{
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 4px;
+    padding: 0 4px;
+    z-index: 1;
+    min-height: 0;
+}
+
+.board-list-header-choose{
+    display: flex;
+    justify-content: center;
+    color: teal;
+    min-height: 60px;
+}
+
+.board-list-header div{
+    font-weight: 700;
+    font-size: 20px;
+    height: 30px;
+}
+
+.board-list-header :hover div{
+    display: none;
+}
+
+.board-list-header :hover .board-list-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}

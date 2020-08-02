@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./App.css"
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
@@ -18,18 +18,6 @@ class App extends Component {
   }
 
   render() {
-    let projectRoutesArr = [];
-
-    this.props.projects.map(project => (
-      projectRoutesArr.push({
-        path: "/" + project.id + "/" + project.title
-      })
-    )
-    )
-    const projectRoutes = projectRoutesArr.map(route => (
-      <Route key={route.path} path={route.path} component={Project} />
-    ))
-
     let routes = (
       <Switch>
         <Route path='/signup' component={SignUp} />
@@ -39,16 +27,20 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
-          {projectRoutes}
           <Route path='/logout' component={SignOut} />
           <Route path='/editProfile' component={Profile} />
+          <Route
+            path="/:projectId/:projectName"
+            exact
+            component={Project}
+          />
           <Route path='/' exact component={Home} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       )
     }
     return (
-      <div>
+      <div className="App">
         <Layout isAuth={this.props.isAuthenticated}>
           {routes}
         </Layout>

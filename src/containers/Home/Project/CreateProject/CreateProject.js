@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./CreateProject.css"
-import background from "../../../../assets/images/slika2.jpg";
+import background from "../../../../assets/images/pro2.jpg";
 import cancel from "../../../../assets/images/icon/cancel.png";
 import Button from "../../../../components/UI/Button/Button";
 
@@ -31,7 +31,13 @@ class CreateProject extends Component {
         return (
             <form onSubmit={this.submitCreatProjectHandler}>
                 <div className="CreateProject">
-                    <div className="create-project-tile" style={{ backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat" }}>
+                    <div
+                        className="create-project-tile"
+                        style={{
+                            backgroundImage: `url(${background})`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "100% 100%"
+                        }}>
                         <div onClick={this.props.closeModal} style={{ cursor: "pointer" }}>
                             <img src={cancel} alt="" className="cancel-create-project" />
                         </div>

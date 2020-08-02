@@ -13,6 +13,7 @@ const initialState = {
     error: null,
     loading: false,
     loadingImg: false,
+    w: false
 }
 
 const userDataStart = (state, action) => {
@@ -73,6 +74,27 @@ const getUsersFail = (state, action) => {
     return updateObject(state, { loadingUsers: false, error: action.error })
 }
 
+const editProfileStart = (state, action) => {
+    return updateObject(state, { loadingEditProfile: true })
+}
+
+const editProfileSuccess = (state, action) => {
+    return updateObject(state, {
+        loadingEditProfile: false, userData: {
+            id: action.id,
+            img: action.img,
+            name: action.name,
+            username: action.username,
+            email: action.email,
+            bio: action.bio
+        }
+    })
+}
+
+const editProfileFail = (state, action) => {
+    return updateObject(state, { loadingEditProfile: false, error: action.error })
+}
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -94,6 +116,12 @@ const reducer = (state = initialState, action) => {
             return getUsersSuccess(state, action);
         case actionTypes.GET_ALL_USERS_FAIL:
             return getUsersFail(state, action);
+        case actionTypes.GET_EDIT_PROFILE_START:
+            return editProfileStart(state, action);
+        case actionTypes.GET_EDIT_PROFILE_SUCCESS:
+            return editProfileSuccess(state, action);
+        case actionTypes.GET_EDIT_PROFILE_FAIL:
+            return editProfileFail(state, action);
         default: return state;
     }
 }
