@@ -1,0 +1,14 @@
+.create-checklist-check{
+    display: inline;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.create-checklist-check img{
+    height: 20px;
+    width: 20px;
+}

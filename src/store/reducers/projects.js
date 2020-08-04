@@ -4,8 +4,6 @@ import { updateObject } from "../utility";
 const initialState = {
     myProjects: [],
     loadingProjects: false,
-    loadinCheckLists: false,
-    loadedChecklists: null
 }
 
 const getProjectsStart = (state, action) => {
@@ -39,18 +37,6 @@ const projectFail = (state, action) => {
     return updateObject(state, { loadingProjects: false, error: action.error })
 }
 
-const allCheckListsStart = (state, action) => {
-    return updateObject(state, { loadinCheckLists: true })
-}
-
-const allCheckListsSuccess = (state, action) => {
-    return updateObject(state, { loadinCheckLists: false })
-}
-
-const allCheckListsFail = (state, action) => {
-    return updateObject(state, { loadinCheckLists: false })
-}
-
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_MY_PROJECTS_START:
@@ -65,12 +51,6 @@ const reducer = (state = initialState, action) => {
             return projectSuccess(state, action);
         case actionTypes.CREATE_PROJECT_FAIL:
             return projectFail(state, action);
-        case actionTypes.GET_ALL_CHECKLIST_START:
-            return allCheckListsStart(state, action);
-        case actionTypes.GET_ALL_CHECKLIST_SUCCESS:
-            return allCheckListsSuccess(state, action);
-        case actionTypes.GET_ALL_CHECKLIST_FAIL:
-            return allCheckListsFail(state, action);
         default: return state;
     }
 }

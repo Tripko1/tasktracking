@@ -38,7 +38,7 @@
     width: calc(100% - 40px);
     background: transparent;
     border: none;
-    color: black;
+    color: #fff;
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
@@ -48,13 +48,15 @@
 }
 
 .create-project-tile-input ::placeholder{
-    color: #484a4d;
+    color: white;
 }
 
 .create-project-tile-input :focus{
     border-radius: 5px;
-    background-color: white;
-    opacity: 0.7;
+    background-color: rgba(204, 204, 204, .4);  
+    color: #fff;  
+    /* background-color: white;
+    opacity: 0.7; */
 }
 
 .create-project-tile-button{

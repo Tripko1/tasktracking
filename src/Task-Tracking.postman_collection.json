@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjdkMjFmZTlhYmJiMWE2OGQyMjczZDIyYjZkZDA3MTFlOGViYWMxY2FmNTMyNWQ2ZDkxZDE2ZDlmNjMwZWYwM2Y0MDA4M2QwZGVlMjZmYmMiLCJpYXQiOjE1OTU0MTc5ODgsIm5iZiI6MTU5NTQxNzk4OCwiZXhwIjoxNjI2OTUzOTg4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.l-beiKq058t2KImcVTxAq9wnvlvhkcUS9-mV6vbfoNIOUckz-0-HswDiHeLaJLmNVm8UeroEDyXrqU6poNxd4U-gXqA8WNlkdn8oi2D2QqNACCM9dIUUHiUtSwC7jBcBlden9E1W5v8NBZvCZtGfuKWtYjNt0Lr4wluov5E5rrNy7ZBo-2gVBU7TU0qWCpLu-mgqo2LfQ8AUtdSsR2bSCGrUueatjw9f5Qwotk0IQJO9qH1Yh1ut9G3wbEEtIm_NtuHSynuqWGikjKXeQaZqn3fKC4xj_vGkbt1BbpGPHZFYOVkCNpzr7ULScgWW9u7QMrBNBsclNYDlnBuNDGyyb22f3cc6ubIoEnCfc1vuSjP_9qO0mMbD-xjAnyvFeHEU3u1ySVFHdbgjTioIDtTmzaZ5K_wBz3ju7s4EbsrUBL1DiRbzBxciNfZ5yh3RH83IUeVgbudQuDXkGJDtXxt_cvH_bLd77ncOjcxwJRxnrYaXyeC3UZryi0-amEgWjvrKgP9oDiEoafvyvYi5SEWYLhPKDw74rXOSlVSW99y6ZBhNow0oSW9AIHaaOlYenDXpjTNHF4ao0ciO6ZtIlt2Su6cwS4kQmFRamw7CTbnWdgg3wWLSaegCn_whbKA-RPiKmxemmgR8r8Hu5QExd8iMp1RuJ3MELYfeWsNPgW_TiyY",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTI4NzYyNWI4MWFkNDI1NWNhMGQwZmQ0NzY5NTdmYzA3YmU1NTY0MjY0MWM1NTZjZDQwY2NjOWM1OGFmYzU2YzExMDkwYmQ3NWFkZGU1NTIiLCJpYXQiOjE1OTU1ODc0NTksIm5iZiI6MTU5NTU4NzQ1OSwiZXhwIjoxNjI3MTIzNDU5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.TAbIWPQlEjTQS3mdM5bLJ3achM_yX13SZSWoPXGBDngrU4LF-k2ZllVpFb24ZUcdHTp7cnGW1_lw2CmtQ-zULCBXUOIQL6dxC7722WSpwRCyReHmGfcxh03aaNCg9nbrgJHbY29nveePEPB10BCcynZLyLaps2MMk9iWH0RMC5G55HhGWtElPgeTD6Q6PcZ4C9IldUyf7jTd9_axTH4SciwBnSUNGPKJT_xBh9d4vmDVqkQ5251h9YLI93WBpvoJmL7W-kMd1ki24wYj98_HdK-TyYNYwu-mhN1mgBNbov6XJNv7LJXFzxKm97jbPP4PjL1-N6Q5T_JZn2z_bCwotv_wl8j8W7MAgtkGjsu6-m5Sh90WvoHPxNhf9WQNTjUiq6zaCddlW_gFmhIcJhk-5T60PbrQ6VwLxYx3zhOaEwbfPvNCpu9x9-jFaw6TFeuwN6Fs8Oq0AofL16AT59tUdsB_5RCLsgv5MbHNXXm4vwZ0Zn8mc0JrsZEsTsVnBkqKLICp60VrxMj6HKl1ZPXv5P_Qit0K-cu1_jGsfkcFOExlfC2DNIu3yjdr5qUZmgDTFWs_KGkkBE-A5iyLBBXmYxokDRxCChPdQFApHaf2IDUrw8biPIVxCwghGX3A26-MXgaPCcEXttWpAnS3kwgJ11lhCkrIwM--8tcn0nU7YfI",
 									"type": "string"
 								}
 							]
@@ -24,13 +24,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/projects/Je?include=checklists, tasks",
+							"raw": "{{url}}/projects/ND?include=checklists",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"projects",
-								"Je"
+								"ND"
 							],
 							"query": [
 								{
@@ -40,7 +40,7 @@
 								},
 								{
 									"key": "include",
-									"value": "checklists, tasks"
+									"value": "checklists"
 								}
 							]
 						}
@@ -74,6 +74,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get My Projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzM1ZWViMDhmYjAyYjQ5YjU1MGNjMTk0YmVjYWZjMDMzOGNhM2QzNDZlYzExZTllOGZlMDZkOWIwYzlhNDEwNWIxNmY5MzE1NmU0ZWVjN2EiLCJpYXQiOjE1OTU1OTM2OTQsIm5iZiI6MTU5NTU5MzY5NCwiZXhwIjoxNjI3MTI5Njk0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WLg2F0svNe2vCHE40QLKYujz2vtlDs1IJPUlgJp7QRFuOnReJTSAQ3Q5Q3eMUG6QSybvwXQfmUIcCM32YjZEoCu3e-tY8sISRYY3NUGUNmI--ZisYPRIg9h7fq5Yblpg9_v6Ks7cnF6ac3LlQ4CwaC09i2x8BCrkd6mAqTYDveNe225Qbz3T66HKK-TlfwMeYtZOpAVJGYP9aCEABYMfVhuzO-Z0z3pSnHY0JGtmak6hrEH2RgM-YaMgB-3krJkdwKiZdj1wmh4zLjNgGJGdKfLxzVwTXBURNtntv4fNHPVJkvg6QESxarSKZWqtcCV_33caOaoJm9vX60Q85fyWE1uJjEDSVNBDd1kZaAIUMp6ltrrwR8-nFh25q3uWOmR0j7pDUOjwtSv22NjNxRd2vSP5VL01SNibFO1sxJ7Z3hHK0OALSrb60hPNmwtNDO_79UT31KWbwvLcM3YoOicKPuRdedb1dLIyOgcMxw2Dix39iSFyBdj1EoV8LphnwEsbw8BRWSrGwPcatOp0BJVG9YhMmkL9DIgcmUadX7cDIdGgE6YJ1vZLBx9Lw9YS-hEggIwTYUOkc7c5Gz6P0sPBSEj6ANsO63f9qZ9QhvQgh9ex-2I2-zP0W2PX6r6Bk36TD_wl0xUOaKPQmiQqo8o_fW0h1iQxm_UXgKeSFndBgew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects?include=users, owner,checklists,tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "users, owner,checklists,tasks"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -81,42 +114,6 @@
 		{
 			"name": "Chechlist",
 			"item": [
-				{
-					"name": "Create Checklist",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGUyYTUyYTRiNDFhZDgyYTE0YWQ2MWViZGFkZjFiMmUzNjhkZGUyZGRkZjU5Y2Y1ZjM1ODhmZjYzZmEwOWE5YWU4OTIyOGY4ZjIxNWQ5ZmIiLCJpYXQiOjE1OTUzMjgwNTYsIm5iZiI6MTU5NTMyODA1NiwiZXhwIjoxNjI2ODY0MDU2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.NkMyMTbaJJ9nDsjEl1Wo6YVxlDLS26CnFQMbT7LrRBcZYKFLp0di4FmPDbo4_kjMm7EkTyYVRhY-tWcdFp1YqepoBufFRl_kPX8kTCqozcqRaN4096Lb_KlQCJBB1zodOzyrjtvKO1DL0h5XK8jKj2bm7LgluJHAoiD3YVQdcCjyKtEZs_oxgHxnx3PTkJ_PM5k8pqXFzSG7FWK0r6mNwt7pjlWMzdnKQGJuFKVtie3I46JznFMeHygLzrk-1TYe4NN9TbvcNBK4hNojYAvaHnvjwTQLr0SA4h7yYwKmgxo2GtG2Jlvx4x-JayzDDGdJGPZgwQEIw-5up2ldZNXnWESzL41vHwejcXGOt8Ek-Z09ZX9CGxHiB2CJkDc4lEBgkgATVpNL5I3CSvPYG-fITTIxLlHz8KJQRaGfeqhbK0XW5iT_7mRVFvdF4GptElPTlVzPAdfrgxNj4igaRB06bw0zbohfIyyKKLdOsmmYuCKKYE3O8UyQgJgrIQP4dGGmLJ8PLlgCCqBTMW0pQdmGEwa4jMHraiRMrwOAcPpEAJrz0ih1QvJMiS5LSw4v4ZVFuK9dTDVWtF2JRdFAZm7PKeMObUX_8nU-1uY5qHBM1MdO9-Nb9ECgdY8Yc1EYcZeE0TZqaCTFqVYnW_gNWLyXtoop42nd8XZZjzXwZ_NT1JE",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\" : \"todooo\",\n    \"project_id\" : \"1n\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/checklists",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"checklists"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Delete Checklist",
 					"request": {
@@ -190,7 +187,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODIxODA0MGVhOGQ5M2Q1MzBiNjA0YzdhNzIzNDY2NGQ4YzFkMDE0MjdjNzNiN2Y1N2IwN2FjYmQ2YTA5YmVkMWVjNzI3YWI5NWNlMGU5MDciLCJpYXQiOjE1OTU0MTYxNTAsIm5iZiI6MTU5NTQxNjE1MCwiZXhwIjoxNjI2OTUyMTUwLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.l3KhbiXpLMvBavUf2Kgul6-ItaW5VXma4GAjIjfdK-BJZErmiQTku4_Jm7DGeKnyFh2wsgFkluXTF0anGa0ygHllhddf2SV6Z5gYFP-d0eEh3OlslfkS0ydQxsvifEiah3EIlCOS7vFLA5qJVEqy3n1IVjDB9MnfKcnxOPNAC6cjp5QzEZhv3545MojC0GzgXzP2z1V-YurYxMXbvdbVInNmxBpEHxysCkkdU1U784UjYjqasIQZrGYZAZpwlQSWM_BonWXci_p_BQinp29j8sWrp6NdZeOwp2TzfUQDF8oy0orcmTPh1CYOIYIYNK4ixW63IEhgw73g4lSGz54Pvk3iSPJTV66r40drAeLK_qoN1J63PlJyCHqjhepKAzJFJgINKrDRO_BdQNGqAkemfgjbaOj3Eze0KrGK9lLqnftNp1gYUER9TcWeRlgVIM5f1fYUG2PIs0xg-WoOpJwBdKSE6s4XDqhIAq4UA0SeQ46Caz-jhRUwlUgNgYgwojrnErLDCx7KNr_IT6ZGNrDr9i4f8nYKxXKga7uMQ72anDxLEx7EIm260-DBREOrFs2u8oYKZ3Xw5kGJsEh-V3np_Jj6P2s9GK7qNvnVKPQY-BpjfBClv19yoSHacV6sA4u3_fYVYFkjDdIYEupmoSY_SRx_xJZoL8rch1qnwlYaYfY",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTI4NzYyNWI4MWFkNDI1NWNhMGQwZmQ0NzY5NTdmYzA3YmU1NTY0MjY0MWM1NTZjZDQwY2NjOWM1OGFmYzU2YzExMDkwYmQ3NWFkZGU1NTIiLCJpYXQiOjE1OTU1ODc0NTksIm5iZiI6MTU5NTU4NzQ1OSwiZXhwIjoxNjI3MTIzNDU5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.TAbIWPQlEjTQS3mdM5bLJ3achM_yX13SZSWoPXGBDngrU4LF-k2ZllVpFb24ZUcdHTp7cnGW1_lw2CmtQ-zULCBXUOIQL6dxC7722WSpwRCyReHmGfcxh03aaNCg9nbrgJHbY29nveePEPB10BCcynZLyLaps2MMk9iWH0RMC5G55HhGWtElPgeTD6Q6PcZ4C9IldUyf7jTd9_axTH4SciwBnSUNGPKJT_xBh9d4vmDVqkQ5251h9YLI93WBpvoJmL7W-kMd1ki24wYj98_HdK-TyYNYwu-mhN1mgBNbov6XJNv7LJXFzxKm97jbPP4PjL1-N6Q5T_JZn2z_bCwotv_wl8j8W7MAgtkGjsu6-m5Sh90WvoHPxNhf9WQNTjUiq6zaCddlW_gFmhIcJhk-5T60PbrQ6VwLxYx3zhOaEwbfPvNCpu9x9-jFaw6TFeuwN6Fs8Oq0AofL16AT59tUdsB_5RCLsgv5MbHNXXm4vwZ0Zn8mc0JrsZEsTsVnBkqKLICp60VrxMj6HKl1ZPXv5P_Qit0K-cu1_jGsfkcFOExlfC2DNIu3yjdr5qUZmgDTFWs_KGkkBE-A5iyLBBXmYxokDRxCChPdQFApHaf2IDUrw8biPIVxCwghGX3A26-MXgaPCcEXttWpAnS3kwgJ11lhCkrIwM--8tcn0nU7YfI",
 									"type": "string"
 								}
 							]
@@ -198,13 +195,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/checklists/1n",
+							"raw": "{{url}}/checklists/ND?include=tasks",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"checklists",
-								"1n"
+								"ND"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "tasks"
+								}
 							]
 						}
 					},
@@ -327,6 +330,215 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Create Comment for Task ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjgyN2QxZmIxMzMyNWNlYjQ5YjFhOTU2NzE0OWUxNTkxMjg5YzdlYWJmYzUwZmIxYWYyMWRiOWE2MzJlMjQxY2U5OWNlOWJiNzU3YmFiZmYiLCJpYXQiOjE1OTU1MDc2ODYsIm5iZiI6MTU5NTUwNzY4NiwiZXhwIjoxNjI3MDQzNjg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.I74dPBzBHTt4-HBsfjmUK1wHo1wn2cUAl4BfLxkfLLSfKt5eIMtVof3rkxyqM4gsTIx1czLzEUUB8aH2RL5FS0BStl-x2im1sXWm8VBj-gdY88iWMz8y-YLy6vRRNScWn_EuZumvUqZqKRyKC9oYI6JqK6YRkfqZt1xg4O_MbAuOeJY2TPtpPA3UdnOKvcEeZeNij7-kEj5tcLcWOZDq6KaL9bIfUtqTXQdRDcF2HParTHJbC0uiIcp0fCdjqRbF95oGNXvYEKhQNfy44bP0JN_hhKYGfJSM4AmZtHWtHQjFvbMlveK-kuzO-s8LlIb4bgz7_naFbd8kC0GGbp1RXb2fddoX9q2EcQVO6EemRU0YWRM1Ud7AxZxHb86xnzi-F1or24OJ89G9xCm-8HkraQy-232ehz3-uu7FbuZ-c1vLWZjDEt9DGEvb0E7Kw6P-TsmWbtGUxCHtBF2-j-uMV2UmsJ1LOEA0HBuX8byE0uHeYunevx2rfDYQsaFkl5AMgDU0NdN8aMUsoG34LkStd9pNeYyrzFuPwUeHBOMM3Jh8e-B9ymoKvpm_chfVT_55PbLxxfkUbmUBEwd-90kXN6HSQpzKzIp-oUOcPQaEXyOt8vdNL43Ho4VL_hyI5qSdTXRPbotw6naLieJWZV9rBpvxScD7zrytaMPpkIWLnhg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\" : \"Comment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/tasks/ND/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"ND",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjgyN2QxZmIxMzMyNWNlYjQ5YjFhOTU2NzE0OWUxNTkxMjg5YzdlYWJmYzUwZmIxYWYyMWRiOWE2MzJlMjQxY2U5OWNlOWJiNzU3YmFiZmYiLCJpYXQiOjE1OTU1MDc2ODYsIm5iZiI6MTU5NTUwNzY4NiwiZXhwIjoxNjI3MDQzNjg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.I74dPBzBHTt4-HBsfjmUK1wHo1wn2cUAl4BfLxkfLLSfKt5eIMtVof3rkxyqM4gsTIx1czLzEUUB8aH2RL5FS0BStl-x2im1sXWm8VBj-gdY88iWMz8y-YLy6vRRNScWn_EuZumvUqZqKRyKC9oYI6JqK6YRkfqZt1xg4O_MbAuOeJY2TPtpPA3UdnOKvcEeZeNij7-kEj5tcLcWOZDq6KaL9bIfUtqTXQdRDcF2HParTHJbC0uiIcp0fCdjqRbF95oGNXvYEKhQNfy44bP0JN_hhKYGfJSM4AmZtHWtHQjFvbMlveK-kuzO-s8LlIb4bgz7_naFbd8kC0GGbp1RXb2fddoX9q2EcQVO6EemRU0YWRM1Ud7AxZxHb86xnzi-F1or24OJ89G9xCm-8HkraQy-232ehz3-uu7FbuZ-c1vLWZjDEt9DGEvb0E7Kw6P-TsmWbtGUxCHtBF2-j-uMV2UmsJ1LOEA0HBuX8byE0uHeYunevx2rfDYQsaFkl5AMgDU0NdN8aMUsoG34LkStd9pNeYyrzFuPwUeHBOMM3Jh8e-B9ymoKvpm_chfVT_55PbLxxfkUbmUBEwd-90kXN6HSQpzKzIp-oUOcPQaEXyOt8vdNL43Ho4VL_hyI5qSdTXRPbotw6naLieJWZV9rBpvxScD7zrytaMPpkIWLnhg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/ND/comments/ND",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"ND",
+								"comments",
+								"ND"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Bookmark",
+			"item": [
+				{
+					"name": "Create Bookmark Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzM1ZWViMDhmYjAyYjQ5YjU1MGNjMTk0YmVjYWZjMDMzOGNhM2QzNDZlYzExZTllOGZlMDZkOWIwYzlhNDEwNWIxNmY5MzE1NmU0ZWVjN2EiLCJpYXQiOjE1OTU1OTM2OTQsIm5iZiI6MTU5NTU5MzY5NCwiZXhwIjoxNjI3MTI5Njk0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WLg2F0svNe2vCHE40QLKYujz2vtlDs1IJPUlgJp7QRFuOnReJTSAQ3Q5Q3eMUG6QSybvwXQfmUIcCM32YjZEoCu3e-tY8sISRYY3NUGUNmI--ZisYPRIg9h7fq5Yblpg9_v6Ks7cnF6ac3LlQ4CwaC09i2x8BCrkd6mAqTYDveNe225Qbz3T66HKK-TlfwMeYtZOpAVJGYP9aCEABYMfVhuzO-Z0z3pSnHY0JGtmak6hrEH2RgM-YaMgB-3krJkdwKiZdj1wmh4zLjNgGJGdKfLxzVwTXBURNtntv4fNHPVJkvg6QESxarSKZWqtcCV_33caOaoJm9vX60Q85fyWE1uJjEDSVNBDd1kZaAIUMp6ltrrwR8-nFh25q3uWOmR0j7pDUOjwtSv22NjNxRd2vSP5VL01SNibFO1sxJ7Z3hHK0OALSrb60hPNmwtNDO_79UT31KWbwvLcM3YoOicKPuRdedb1dLIyOgcMxw2Dix39iSFyBdj1EoV8LphnwEsbw8BRWSrGwPcatOp0BJVG9YhMmkL9DIgcmUadX7cDIdGgE6YJ1vZLBx9Lw9YS-hEggIwTYUOkc7c5Gz6P0sPBSEj6ANsO63f9qZ9QhvQgh9ex-2I2-zP0W2PX6r6Bk36TD_wl0xUOaKPQmiQqo8o_fW0h1iQxm_UXgKeSFndBgew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bookmarks/projects/Je",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookmarks",
+								"projects",
+								"Je"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Bookmark Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzM1ZWViMDhmYjAyYjQ5YjU1MGNjMTk0YmVjYWZjMDMzOGNhM2QzNDZlYzExZTllOGZlMDZkOWIwYzlhNDEwNWIxNmY5MzE1NmU0ZWVjN2EiLCJpYXQiOjE1OTU1OTM2OTQsIm5iZiI6MTU5NTU5MzY5NCwiZXhwIjoxNjI3MTI5Njk0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WLg2F0svNe2vCHE40QLKYujz2vtlDs1IJPUlgJp7QRFuOnReJTSAQ3Q5Q3eMUG6QSybvwXQfmUIcCM32YjZEoCu3e-tY8sISRYY3NUGUNmI--ZisYPRIg9h7fq5Yblpg9_v6Ks7cnF6ac3LlQ4CwaC09i2x8BCrkd6mAqTYDveNe225Qbz3T66HKK-TlfwMeYtZOpAVJGYP9aCEABYMfVhuzO-Z0z3pSnHY0JGtmak6hrEH2RgM-YaMgB-3krJkdwKiZdj1wmh4zLjNgGJGdKfLxzVwTXBURNtntv4fNHPVJkvg6QESxarSKZWqtcCV_33caOaoJm9vX60Q85fyWE1uJjEDSVNBDd1kZaAIUMp6ltrrwR8-nFh25q3uWOmR0j7pDUOjwtSv22NjNxRd2vSP5VL01SNibFO1sxJ7Z3hHK0OALSrb60hPNmwtNDO_79UT31KWbwvLcM3YoOicKPuRdedb1dLIyOgcMxw2Dix39iSFyBdj1EoV8LphnwEsbw8BRWSrGwPcatOp0BJVG9YhMmkL9DIgcmUadX7cDIdGgE6YJ1vZLBx9Lw9YS-hEggIwTYUOkc7c5Gz6P0sPBSEj6ANsO63f9qZ9QhvQgh9ex-2I2-zP0W2PX6r6Bk36TD_wl0xUOaKPQmiQqo8o_fW0h1iQxm_UXgKeSFndBgew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bookmarks/projects/Je",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookmarks",
+								"projects",
+								"Je"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzM1ZWViMDhmYjAyYjQ5YjU1MGNjMTk0YmVjYWZjMDMzOGNhM2QzNDZlYzExZTllOGZlMDZkOWIwYzlhNDEwNWIxNmY5MzE1NmU0ZWVjN2EiLCJpYXQiOjE1OTU1OTM2OTQsIm5iZiI6MTU5NTU5MzY5NCwiZXhwIjoxNjI3MTI5Njk0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WLg2F0svNe2vCHE40QLKYujz2vtlDs1IJPUlgJp7QRFuOnReJTSAQ3Q5Q3eMUG6QSybvwXQfmUIcCM32YjZEoCu3e-tY8sISRYY3NUGUNmI--ZisYPRIg9h7fq5Yblpg9_v6Ks7cnF6ac3LlQ4CwaC09i2x8BCrkd6mAqTYDveNe225Qbz3T66HKK-TlfwMeYtZOpAVJGYP9aCEABYMfVhuzO-Z0z3pSnHY0JGtmak6hrEH2RgM-YaMgB-3krJkdwKiZdj1wmh4zLjNgGJGdKfLxzVwTXBURNtntv4fNHPVJkvg6QESxarSKZWqtcCV_33caOaoJm9vX60Q85fyWE1uJjEDSVNBDd1kZaAIUMp6ltrrwR8-nFh25q3uWOmR0j7pDUOjwtSv22NjNxRd2vSP5VL01SNibFO1sxJ7Z3hHK0OALSrb60hPNmwtNDO_79UT31KWbwvLcM3YoOicKPuRdedb1dLIyOgcMxw2Dix39iSFyBdj1EoV8LphnwEsbw8BRWSrGwPcatOp0BJVG9YhMmkL9DIgcmUadX7cDIdGgE6YJ1vZLBx9Lw9YS-hEggIwTYUOkc7c5Gz6P0sPBSEj6ANsO63f9qZ9QhvQgh9ex-2I2-zP0W2PX6r6Bk36TD_wl0xUOaKPQmiQqo8o_fW0h1iQxm_UXgKeSFndBgew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bookmarks/projects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookmarks",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Invitations",
+			"item": [
+				{
+					"name": "Send Invitation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDBlYWQxOWQxMDYwNTA3MjJhMzI5OTgzMmZjOGRlYzFiN2VhMzdhNzVlMDkwOGNhNjU4ZDJhOTMyYjc4YzU3YzBmYWI3YzNhZjZkZTVmM2MiLCJpYXQiOjE1OTU4NDg0ODEsIm5iZiI6MTU5NTg0ODQ4MSwiZXhwIjoxNjI3Mzg0NDgxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.NKwXuMIZZMcE5bLQmMSkgqW8MYsQHfW1-bCXa82-EXxRxkLrB6Km1ssfrFlikT4QzXo6Glq2OxNB0AkcEF4pkJyo72JTjNYUpNGr16Ay4yi6oC2nl6RhxtU0kY2t9yWY6jKcfD34cJnFEJOxXQol-iZmz75m6G-z684J-6jIz8qw4iuHLT_zFIXbDcnMLFNPC9QbxqUc9xMBxsKmrPUgqrWaXeeUp7D5ilJvC2jmqN4MYL37tDw2P9XjZS7lsVXwQXwL81hBqoQBzEcT3cOX3L6aA4rdwClTKE2Oty9rAkJ3yt-pNCbe19YkFI0vY9cAo_b3kw6yXYJ105h7jETotM_k2OiOjaAfWKVJGGIuy017aHDanZCrx1S0L8vXCoM8FxbUl7xJVAEeEkajnf8MAqd20L1FjylR_osPBHs4-yPmMnHZpypbuDpI_3KhOwr4sx6G1WkUz3emrqwyjYAvCAuYnc_dmtLJC2YZ8Cp_KXNPoy4-JBcUPyLGDJH9MbZ0Yqm0RJwpTR3s8Zbn1uc5xy74oQfMKpcHn5-lNzNsjN4vccf6fUwzzDM7BlSphGUqwPQ2fKbcZXag8mN-2-yMop92ILV1YWIO7wb_TCb81ybGylGcn2Gfw56FSADe1HHSw1ARvXWiGnPYxBOuudZN0ON3MBzgPYuuBV4YU1yQx9k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"milos.tripkovic@gmail.com\",\n    \"project_id\" : \"ND\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/invitations/send",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"invitations",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "test",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -412,12 +624,12 @@
 	],
 	"variable": [
 		{
-			"id": "3111bfd4-8bcb-4498-ab99-833005550c16",
+			"id": "100e4a25-52ba-4ced-944a-12d5e1442a3f",
 			"key": "url",
 			"value": "http://api.tasktracking.local/api"
 		},
 		{
-			"id": "33806392-6f63-49e6-b3dd-d2fcbc273efb",
+			"id": "96ab8e39-ca95-4949-8a71-e9c1f8170946",
 			"key": "project",
 			"value": "1"
 		}

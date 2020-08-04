@@ -20,5 +20,9 @@ export {
 export {
     getMyProjects,
     createProject,
-    getAllChecklist
 } from "./projects"
+export {
+    getAllChecklist,
+    createChecklist,
+    updateChecklist
+} from "./checklist"
