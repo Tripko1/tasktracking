@@ -56,6 +56,25 @@ const updateCheFail = (state, action) => {
     return updateObject(state, { loadingChecklist: null, error: action.error })
 }
 
+const deleteCheStart = (state, action) => {
+    return updateObject(state, { loadingChecklists: true })
+}
+
+const deleteCheSuccess = (state, action) => {
+    const newChecklist = state.checklists.filter(
+        checklist => checklist.id !== action.id
+    );
+    return updateObject(state, {
+        loadingChecklists: false,
+        checklists: newChecklist
+    })
+}
+
+const deleteCheFail = (state, action) => {
+    return updateObject(state, { loadingChecklists: false, error: action.error })
+}
+
+
 const reducer = (state = InitialState, action) => {
     switch (action.type) {
         case actionTypes.GET_ALL_CHECKLIST_START:
@@ -76,6 +95,12 @@ const reducer = (state = InitialState, action) => {
             return updateCheSuccess(state, action);
         case actionTypes.UPDATE_CHECKLIST_FAIL:
             return updateCheFail(state, action);
+        case actionTypes.DELETE_CHECKLIST_START:
+            return deleteCheStart(state, action);
+        case actionTypes.DELETE_CHECKLIST_SUCCESS:
+            return deleteCheSuccess(state, action);
+        case actionTypes.DELETE_CHECKLIST_FAIL:
+            return deleteCheFail(state, action);
         default: return state;
     }
 }

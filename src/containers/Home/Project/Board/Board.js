@@ -14,6 +14,7 @@ class Board extends Component {
                 token={this.props.token}
                 loadingChecklist={this.props.loadingChecklist}
                 onUpdateChecklist={this.props.onUpdateChecklist}
+                onDeleteChecklist={this.props.onDeleteChecklist}
             />
         ))
         return (

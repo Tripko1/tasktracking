@@ -5,6 +5,7 @@ import Button from "../../../../../components/UI/Button/Button";
 import Card from "./BoardCardItem/BoardCardItem";
 import Spinner from "../../../../../components/UI/Spinner/Spinner";
 import Aux from "../../../../../hoc/Auxiliary/Auxiliary";
+import deleteBtn from "../../../../../assets/images/icon/icons8-delete-48.png"
 
 class BoardList extends Component {
     state = {
@@ -32,9 +33,16 @@ class BoardList extends Component {
         this.props.onUpdateChecklist(this.props.token, this.state.checklistName, this.props.checklistId)
     }
 
+    deleteChecklist = (id) => {
+        this.props.onDeleteChecklist(this.props.token, id);
+    }
+
     render() {
         let header = (
             <Aux>
+                <div style={{ height: "30px" }}>
+                    <img className="board-list-content-img" src={deleteBtn} alt="" onClick={() => this.deleteChecklist(this.props.checklistId)} />
+                </div>
                 <div className="board-list-header">
                     <div className="board-list-header-choose">
                         <div>{this.props.checklistName}</div>

@@ -77,7 +77,6 @@ export const createChecklist = (token, title, id) => {
             }
         })
             .then(response => {
-                console.log(response.data.data)
                 dispatch(createChecklistSuccess(response.data.data))
             })
             .catch(error => {
@@ -121,8 +120,46 @@ export const updateChecklist = (token, title, id) => {
             }
         })
             .then(response => {
-                console.log(response.data)
                 dispatch(updateChecklistSuccess(response.data.data))
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    }
+}
+
+export const deleteChecklistStart = () => {
+    return {
+        type: actionTypes.DELETE_CHECKLIST_START
+    }
+}
+
+export const deleteChecklistSuccess = (id) => {
+    return {
+        type: actionTypes.DELETE_CHECKLIST_SUCCESS,
+        id: id
+    }
+}
+
+export const deleteChecklistFail = (error) => {
+    return {
+        type: actionTypes.DELETE_CHECKLIST_FAIL,
+        error: error
+    }
+}
+
+export const delteChecklist = (token, id) => {
+    return dispatch => {
+        dispatch(deleteChecklistStart())
+        axios.delete("/checklists/" + id, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(response => {
+                dispatch(deleteChecklistSuccess(id))
             })
             .catch(error => {
                 console.log(error.response)

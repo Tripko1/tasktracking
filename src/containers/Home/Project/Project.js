@@ -96,6 +96,7 @@ class Project extends Component {
                         checklists={this.props.checklists}
                         loadingChecklist={this.props.loadingChecklist}
                         onUpdateChecklist={this.props.onUpdateChecklist}
+                        onDeleteChecklist={this.props.onDeleteChecklist}
                     />
                 </Aux>
             )
@@ -129,7 +130,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onGetAllChecklists: (token, id) => dispatch(actions.getAllChecklist(token, id)),
         onCreateChecklist: (token, title, id) => dispatch(actions.createChecklist(token, title, id)),
-        onUpdateChecklist: (token, title, id) => dispatch(actions.updateChecklist(token, title, id))
+        onUpdateChecklist: (token, title, id) => dispatch(actions.updateChecklist(token, title, id)),
+        onDeleteChecklist: (token, id) => dispatch(actions.delteChecklist(token, id))
     }
 }
 
