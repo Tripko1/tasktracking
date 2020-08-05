@@ -5,7 +5,8 @@ import Button from "../../../../../components/UI/Button/Button";
 import Card from "./BoardCardItem/BoardCardItem";
 import Spinner from "../../../../../components/UI/Spinner/Spinner";
 import Aux from "../../../../../hoc/Auxiliary/Auxiliary";
-import deleteBtn from "../../../../../assets/images/icon/icons8-delete-48.png"
+import deleteBtn from "../../../../../assets/images/icon/icons8-delete-48.png";
+import plus from "../../../../../assets/images/icon/icons8-edit-node-48.png";
 
 class BoardList extends Component {
     state = {
@@ -38,6 +39,16 @@ class BoardList extends Component {
     }
 
     render() {
+        let tasks = (
+            <Aux>
+                {this.props.tasks.data.map(task => (
+                    <Card
+                        key={task.id}
+                        task={task}
+                    />
+                ))}
+            </Aux>
+        )
         let header = (
             <Aux>
                 <div style={{ height: "30px" }}>
@@ -63,9 +74,11 @@ class BoardList extends Component {
                     </div>
                 </div>
                 <div className="board-list-card">
-                    <Card name="Card1" />
-                    <Card name="Card2" />
-                    <Card name="Card3" />
+                    {tasks}
+                </div>
+                <div className="board-list-add-task" onClick={() => this.props.openTaskModal(this.props.checklistId)}>
+                    <img src={plus} alt="" style={{ height: "20px", width: "20px" }} />
+                    <span style={{ marginLeft: "5px" }}>Add another card</span>
                 </div>
             </Aux>
         )

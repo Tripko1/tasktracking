@@ -7,6 +7,7 @@ import image from "../../../assets/images/pro2.jpg";
 import Modal from "../../../components/UI/Modal/Modal";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import CreateChecklist from "./CreateChecklist/CreateChecklist";
+import CreateNewTask from "./CreateNewTask/CreateNewTask";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import { connect } from "react-redux";
 
@@ -14,7 +15,9 @@ class Project extends Component {
     state = {
         projectName: this.props.match.params.projectName,
         touchedProjectName: true,
-        show: false
+        show: false,
+        showNewTask: false,
+        selectedId: null
     }
 
     static getDerivedStateFromProps = (props, state) => {
@@ -37,7 +40,8 @@ class Project extends Component {
                 (this.props.checklists &&
                     this.props.checklists.id !== +this.props.match.params.id)
             ) {
-                this.props.onGetAllChecklists(this.props.token, this.props.match.params.projectId)
+                //this.props.onGetAllChecklists(this.props.token, this.props.match.params.projectId)
+                this.props.onGetAllChecklistsTasks(this.props.token, this.props.match.params.projectId)
             }
         }
     }
@@ -47,6 +51,20 @@ class Project extends Component {
     }
     closeModal = () => {
         this.setState({ show: false })
+    }
+
+    openTaskModal = (id) => {
+        this.setState({
+            showNewTask: true,
+            selectedId: id
+        })
+    }
+
+    closeTaskModal = () => {
+        this.setState({
+            showNewTask: false,
+            selectedId: null
+        })
     }
 
     handleProjectName = (event) => {
@@ -77,11 +95,30 @@ class Project extends Component {
                 </Modal>
             )
         }
+        let taskModal = null;
+        if (this.state.showNewTask) {
+            taskModal = (
+                <Modal
+                    show={this.state.showNewTask}
+                    cancelModalHandler={this.closeTaskModal}
+                >
+                    <CreateNewTask
+                        closeModal={this.closeTaskModal}
+                        token={this.props.token}
+                        project_id={this.props.match.params.projectId}
+                        checklistId={this.state.selectedId}
+                        onCreateList={this.props.onCreateList}
+                        checklists={this.props.checklists}
+                    />
+                </Modal>
+            )
+        }
         let content = <Spinner />;
         if (!this.props.loading) {
             content = (
                 <Aux>
                     {modal}
+                    {taskModal}
                     <Header
                         projectName={this.state.projectName}
                         handleProjectName={this.handleProjectName}
@@ -97,6 +134,7 @@ class Project extends Component {
                         loadingChecklist={this.props.loadingChecklist}
                         onUpdateChecklist={this.props.onUpdateChecklist}
                         onDeleteChecklist={this.props.onDeleteChecklist}
+                        openTaskModal={this.openTaskModal}
                     />
                 </Aux>
             )
@@ -131,7 +169,9 @@ const mapDispatchToProps = (dispatch) => {
         onGetAllChecklists: (token, id) => dispatch(actions.getAllChecklist(token, id)),
         onCreateChecklist: (token, title, id) => dispatch(actions.createChecklist(token, title, id)),
         onUpdateChecklist: (token, title, id) => dispatch(actions.updateChecklist(token, title, id)),
-        onDeleteChecklist: (token, id) => dispatch(actions.delteChecklist(token, id))
+        onDeleteChecklist: (token, id) => dispatch(actions.delteChecklist(token, id)),
+        onGetAllChecklistsTasks: (token, checklistId) => dispatch(actions.getAllChecklistTasks(token, checklistId)),
+        onCreateList: (data) => dispatch(actions.createTask(data))
     }
 }
 

@@ -6,7 +6,7 @@ class BoardCardItem extends Component {
         return (
             <div className="board-list-card-item">
                 <div className="board-list-card-item-name">
-                    <div><strong>{this.props.name}</strong></div>
+                    <div><strong>{this.props.task.title}</strong></div>
                 </div>
             </div>
         )

@@ -97,6 +97,7 @@ export const updateChecklistSuccess = (data) => {
         type: actionTypes.UPDATE_CHECKLIST_SUCCESS,
         id: data.id,
         title: data.title,
+        tasks: data.tasks,
         tasks_count: data.tasks_count
     }
 }
@@ -160,6 +161,67 @@ export const delteChecklist = (token, id) => {
         })
             .then(response => {
                 dispatch(deleteChecklistSuccess(id))
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    }
+}
+
+export const getAllChecklistTasks = (token, checklistId) => {
+    return dispatch => {
+        dispatch(getAllCheklistStart())
+        axios.get("/checklists/" + checklistId + "?include=tasks", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(response => {
+                dispatch(getAllCheklistSuccess(response.data.data))
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    }
+}
+
+export const createTaskStart = (id) => {
+    return {
+        type: actionTypes.CREATE_TASK_START,
+        id: id,
+    }
+}
+
+export const createTaskSuccess = (data, checklist) => {
+    return {
+        type: actionTypes.CREATE_TASK_SUCCESS,
+        data: data,
+        checklist: checklist
+    }
+}
+
+export const createTaskFail = (error) => {
+    return {
+        type: actionTypes.CREATE_TASK_FAIL,
+        error: error
+    }
+}
+
+export const createTask = (data) => {
+    return dispatch => {
+        dispatch(createTaskStart(data.checklist_id))
+        axios.post("/tasks", data, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + data.token
+            }
+        })
+            .then(response => {
+                console.log(response.data.data)
+                dispatch(createTaskSuccess(response.data.data, data.checklist))
             })
             .catch(error => {
                 console.log(error.response)

@@ -15,6 +15,8 @@ class Board extends Component {
                 loadingChecklist={this.props.loadingChecklist}
                 onUpdateChecklist={this.props.onUpdateChecklist}
                 onDeleteChecklist={this.props.onDeleteChecklist}
+                openTaskModal={this.props.openTaskModal}
+                tasks={checklist.tasks}
             />
         ))
         return (

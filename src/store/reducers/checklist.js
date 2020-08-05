@@ -5,7 +5,8 @@ const InitialState = {
     checklists: [],
     loadingChecklists: false,
     loadingChecklist: null,
-    error: null
+    error: null,
+    loadingTasks: false
 }
 
 const allCheckListsStart = (state, action) => {
@@ -25,7 +26,7 @@ const createCheStart = (state, action) => {
 }
 
 const createCheSuccess = (state, action) => {
-    const newChecklist = updateObject(action.checklists, { id: action.id, title: action.title });
+    const newChecklist = updateObject(action.checklists, { id: action.id, title: action.title, tasks: { data: [] } });
     return updateObject(state, {
         loadingChecklists: false,
         checklists: state.checklists.concat(newChecklist)
@@ -43,7 +44,7 @@ const updateCheStart = (state, action) => {
 const updateCheSuccess = (state, action) => {
     const elementsIndex = state.checklists.findIndex(element => element.id === action.id)
     let newArray = [...state.checklists];
-    const updateChecklist = updateObject(action.checklists, { id: action.id, title: action.title });
+    const updateChecklist = updateObject(action.checklists, { id: action.id, title: action.title, tasks: action.tasks });
     newArray[elementsIndex] = updateChecklist;
 
     return updateObject(state, {
@@ -74,6 +75,43 @@ const deleteCheFail = (state, action) => {
     return updateObject(state, { loadingChecklists: false, error: action.error })
 }
 
+const creTaskStart = (state, action) => {
+    return updateObject(state, { loadingChecklist: action.id })
+}
+
+const creTaskSuccess = (state, action) => {
+    const index = state.checklists.findIndex(el => el.id === action.checklist.id);
+
+    const newTask = updateObject(state.checklists[index].tasks.data, {
+        id: action.data.id,
+        title: action.data.title,
+        description: action.data.description
+    });
+
+    const updateData = updateObject(state.checklists[index].tasks, {
+        data: state.checklists[index].tasks.data.concat(newTask)
+    })
+
+    const updateChecklist = updateObject(state.checklists, {
+        tasks: updateData,
+        id: action.checklist.id,
+        title: action.checklist.title,
+        tasks_count: action.checklist.tasks_count
+    })
+
+    let checklists = [...state.checklists]
+    checklists[index] = updateChecklist
+
+    return updateObject(state, {
+        loadingChecklist: null,
+        checklists: checklists
+    })
+}
+
+const creTaskFail = (state, action) => {
+    return updateObject(state, { loadingChecklist: null, error: action.error })
+}
+
 
 const reducer = (state = InitialState, action) => {
     switch (action.type) {
@@ -101,6 +139,12 @@ const reducer = (state = InitialState, action) => {
             return deleteCheSuccess(state, action);
         case actionTypes.DELETE_CHECKLIST_FAIL:
             return deleteCheFail(state, action);
+        case actionTypes.CREATE_TASK_START:
+            return creTaskStart(state, action);
+        case actionTypes.CREATE_TASK_SUCCESS:
+            return creTaskSuccess(state, action);
+        case actionTypes.CREATE_TASK_FAIL:
+            return creTaskFail(state, action);
         default: return state;
     }
 }

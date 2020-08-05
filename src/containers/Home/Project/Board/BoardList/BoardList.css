@@ -86,3 +86,14 @@
     justify-content: center;
     border: none;
 }
+
+.board-list-add-task{
+    background-color: #ccc;
+    color: teal;
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid teal;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+}
