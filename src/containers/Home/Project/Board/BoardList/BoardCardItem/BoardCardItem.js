@@ -1,16 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 import "./BoardCardItem.css"
 
-class BoardCardItem extends Component {
-    render() {
-        return (
-            <div className="board-list-card-item">
-                <div className="board-list-card-item-name">
-                    <div><strong>{this.props.task.title}</strong></div>
-                </div>
-            </div>
-        )
+const boardCardItem = props => {
+
+    const dragStart = e => {
+        const target = e.target;
+        e.dataTransfer.setData('card_id', target.id);
+        // setTimeout(() => {
+        //     target.style.display = 'none';
+        // }, 0)
     }
+
+    const dragOver = e => {
+        e.stopPropagation();
+    }
+    return (
+        <div
+            id={props.task.id + " " + props.checklistId}
+            className="board-list-card-item"
+            onDragStart={dragStart}
+            onDragOver={dragOver}
+            draggable="true"
+        >
+            <div className="board-list-card-item-name">
+                <div><strong>{props.task.title}</strong></div>
+            </div>
+        </div>
+    )
 }
 
-export default BoardCardItem;
+export default boardCardItem;

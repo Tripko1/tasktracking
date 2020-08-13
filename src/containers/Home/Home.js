@@ -8,10 +8,35 @@ import { connect } from 'react-redux';
 import LeftHomeSider from "../../components/Home/LeftHomeSider/LeftHomeSider";
 import PersonalBoard from "../../components/Home/AllBoards/PersonalBoard/PersonalBoard";
 import CreateProject from "./Project/CreateProject/CreateProject";
+
+// import Echo from 'laravel-echo';
+// import socketio from "socket.io-client";
 class Home extends Component {
     state = {
         show: false
     }
+
+    // constructor(props) {
+    //     super(props)
+    //     // window.io = require('socket.io-client');
+    //     const echo = new Echo({
+    //         broadcaster: 'socket.io',
+    //         host: "http://localhost:6001",
+    //         auth: {
+    //             headers: {
+    //                 Accept: "application/json",
+    //                 "Content-Type": "application/json",
+    //                 Authorization: "Bearer " + this.props.token
+    //             }
+    //         },
+    //         client: socketio
+    //     });
+    //     echo.private('project13')
+    //         .listen("ChecklistCreatedEvent", e => {
+    //             console.log(e);
+    //         })
+    // }
+
     componentDidMount() {
         this.props.onGetMyProjects(this.props.token);
         this.props.onGetUserData(this.props.token, this.props.userId);
@@ -25,7 +50,6 @@ class Home extends Component {
     closeModal = () => {
         this.setState({ show: false })
     }
-
 
     render() {
         let Homecontent = <Spinner />;

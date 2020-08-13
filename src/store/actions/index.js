@@ -27,5 +27,6 @@ export {
     updateChecklist,
     delteChecklist,
     getAllChecklistTasks,
-    createTask
+    createTask,
+    changeChecklist
 } from "./checklist"

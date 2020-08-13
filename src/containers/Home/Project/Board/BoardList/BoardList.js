@@ -38,17 +38,40 @@ class BoardList extends Component {
         this.props.onDeleteChecklist(this.props.token, id);
     }
 
+    drop = e => {
+        e.preventDefault();
+        const card_id = e.dataTransfer.getData('card_id');
+        const card = document.getElementById(card_id);
+        card.style.display = 'block';
+
+        const p = e.pageY - 225;
+        const position = Math.floor((p / 40));
+
+        const param = this.props.projectId + "." + this.props.checklistId;
+        let list = document.getElementById(String(param))
+        list.insertBefore(card, list.childNodes[position])
+
+        const taskId = card_id.split(" ")[0];
+        const cId = this.props.checklists.findIndex(el => el.id === card_id.split(" ")[1])
+        const index = this.props.checklists[cId].tasks.data.findIndex(el => el.id === taskId);
+
+        const data = {
+            newChecklistId: this.props.checklistId,
+            oldChecklistId: card_id.split(" ")[1],
+            title: this.props.checklists[cId].tasks.data[index].title,
+            desc: this.props.checklists[cId].tasks.data[index].description,
+            taskId: taskId,
+            position: position
+        }
+
+        this.props.onChangeChecklist(this.props.token, data);
+    }
+
+    dragOver = e => {
+        e.preventDefault();
+    }
+
     render() {
-        let tasks = (
-            <Aux>
-                {this.props.tasks.data.map(task => (
-                    <Card
-                        key={task.id}
-                        task={task}
-                    />
-                ))}
-            </Aux>
-        )
         let header = (
             <Aux>
                 <div style={{ height: "30px" }}>
@@ -73,8 +96,20 @@ class BoardList extends Component {
                         </form>
                     </div>
                 </div>
-                <div className="board-list-card">
-                    {tasks}
+                <div
+                    id={this.props.projectId + "." + this.props.checklistId}
+                    className="board-list-card"
+                    onDrop={this.drop}
+                    onDragOver={this.dragOver}
+                >
+                    {this.props.tasks.data.map(task =>
+                        <Card
+                            key={this.props.checklistId + " " + task.id}
+                            task={task}
+                            checklistId={this.props.checklistId}
+                            onChangeChecklist={this.props.onChangeChecklist}
+                        />
+                    )}
                 </div>
                 <div className="board-list-add-task" onClick={() => this.props.openTaskModal(this.props.checklistId)}>
                     <img src={plus} alt="" style={{ height: "20px", width: "20px" }} />

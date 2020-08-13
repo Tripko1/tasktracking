@@ -50,7 +50,7 @@
 }
 
 .create-task-tile-input ::placeholder{
-    color: white;
+    color: rgb(230, 225, 225);
 }
 
 .create-task-tile-input :focus{

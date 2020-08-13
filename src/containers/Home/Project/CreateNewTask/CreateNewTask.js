@@ -10,12 +10,14 @@ class createNewTask extends Component {
         description: "",
         touched: false,
         touchedDesc: false,
+        validName: false,
+        validDesc: false
     }
 
     submitCreateTaskHandler = (event) => {
         event.preventDefault();
         const index = this.props.checklists.findIndex(el => el.id === this.props.checklistId)
-        console.log(index)
+
         const data = {
             token: this.props.token,
             project_id: this.props.project_id,
@@ -32,17 +34,23 @@ class createNewTask extends Component {
         return value.trim() !== ""
     }
 
+    isValid(value) {
+        return value.length >= 3;
+    }
+
     handleInput = (event) => {
         this.setState({
             taskName: event.target.value,
-            touched: this.isTouched(event.target.value)
+            touched: this.isTouched(event.target.value),
+            validName: this.isValid(event.target.value)
         })
     }
 
     handleDescription = (event) => {
         this.setState({
             description: event.target.value,
-            touchedDesc: this.isTouched(event.target.value)
+            touchedDesc: this.isTouched(event.target.value),
+            validDesc: this.isValid(event.target.value)
         })
     }
 
@@ -78,7 +86,7 @@ class createNewTask extends Component {
                     </div>
                 </div>
                 <div className="create-project-tile-button">
-                    <Button btnType="Success" disabled={!(this.state.touched && this.state.touchedDesc)}>Create Task</Button>
+                    <Button btnType="Success" disabled={!(this.state.touched && this.state.touchedDesc && this.state.validName && this.state.validDesc)}>Create Task</Button>
                 </div>
             </form>
         )

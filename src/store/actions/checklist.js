@@ -95,10 +95,7 @@ export const updateChecklistStart = (id) => {
 export const updateChecklistSuccess = (data) => {
     return {
         type: actionTypes.UPDATE_CHECKLIST_SUCCESS,
-        id: data.id,
-        title: data.title,
-        tasks: data.tasks,
-        tasks_count: data.tasks_count
+        data
     }
 }
 
@@ -220,8 +217,53 @@ export const createTask = (data) => {
             }
         })
             .then(response => {
-                console.log(response.data.data)
                 dispatch(createTaskSuccess(response.data.data, data.checklist))
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    }
+}
+
+export const changeChecklistStart = () => {
+    return {
+        type: actionTypes.CHANGE_CHECKLIST_START
+    }
+}
+
+export const changeChecklistSucces = (response, data) => {
+    return {
+        type: actionTypes.CHANGE_CHECKLIST_SUCCESS,
+        response,
+        data
+    }
+}
+
+export const changeChecklistFail = (error) => {
+    return {
+        type: actionTypes.CHANGE_CHECKLIST_FAIL,
+        error
+    }
+}
+
+export const changeChecklist = (token, data) => {
+    return dispatch => {
+        dispatch(changeChecklistStart())
+        const el = {
+            title: data.title,
+            checklist_id: data.newChecklistId,
+            description: data.desc,
+            users: []
+        }
+        axios.put("/tasks/" + data.taskId, el, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(response => {
+                dispatch(changeChecklistSucces(response.data.data, data))
             })
             .catch(error => {
                 console.log(error.response)

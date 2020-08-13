@@ -6,8 +6,8 @@ import Create from "../../../../components/SelectedProject/CreateCheckList/Creat
 class Board extends Component {
 
     render() {
-        const board_list = this.props.checklists.map(checklist => (
-            <BoardList
+        const board_list = this.props.checklists.map(checklist => {
+            return <BoardList
                 key={checklist.id}
                 checklistName={checklist.title}
                 checklistId={checklist.id}
@@ -17,8 +17,12 @@ class Board extends Component {
                 onDeleteChecklist={this.props.onDeleteChecklist}
                 openTaskModal={this.props.openTaskModal}
                 tasks={checklist.tasks}
+                onChangeChecklist={this.props.onChangeChecklist}
+                checklists={this.props.checklists}
+                projectId={this.props.projectId}
             />
-        ))
+        }
+        )
         return (
             <div className="board">
                 {board_list}

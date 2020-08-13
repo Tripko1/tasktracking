@@ -40,7 +40,6 @@ class Project extends Component {
                 (this.props.checklists &&
                     this.props.checklists.id !== +this.props.match.params.id)
             ) {
-                //this.props.onGetAllChecklists(this.props.token, this.props.match.params.projectId)
                 this.props.onGetAllChecklistsTasks(this.props.token, this.props.match.params.projectId)
             }
         }
@@ -135,6 +134,8 @@ class Project extends Component {
                         onUpdateChecklist={this.props.onUpdateChecklist}
                         onDeleteChecklist={this.props.onDeleteChecklist}
                         openTaskModal={this.openTaskModal}
+                        onChangeChecklist={this.props.onChangeChecklist}
+                        projectId={this.props.match.params.projectId}
                     />
                 </Aux>
             )
@@ -160,7 +161,7 @@ const mapStateToProps = (state) => {
         token: state.auth.token,
         checklists: state.checklists.checklists,
         loading: state.checklists.loadingChecklists,
-        loadingChecklist: state.checklists.loadingChecklist
+        loadingChecklist: state.checklists.loadingChecklist,
     }
 }
 
@@ -171,7 +172,8 @@ const mapDispatchToProps = (dispatch) => {
         onUpdateChecklist: (token, title, id) => dispatch(actions.updateChecklist(token, title, id)),
         onDeleteChecklist: (token, id) => dispatch(actions.delteChecklist(token, id)),
         onGetAllChecklistsTasks: (token, checklistId) => dispatch(actions.getAllChecklistTasks(token, checklistId)),
-        onCreateList: (data) => dispatch(actions.createTask(data))
+        onCreateList: (data) => dispatch(actions.createTask(data)),
+        onChangeChecklist: (checklistId, cardId, position) => dispatch(actions.changeChecklist(checklistId, cardId, position))
     }
 }
 
