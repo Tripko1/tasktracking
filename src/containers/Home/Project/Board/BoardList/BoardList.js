@@ -5,7 +5,7 @@ import Button from "../../../../../components/UI/Button/Button";
 import Card from "./BoardCardItem/BoardCardItem";
 import Spinner from "../../../../../components/UI/Spinner/Spinner";
 import Aux from "../../../../../hoc/Auxiliary/Auxiliary";
-import deleteBtn from "../../../../../assets/images/icon/icons8-delete-48.png";
+import deleteBtn from "../../../../../assets/images/icon/icons8-delete-bin-48.png";
 import plus from "../../../../../assets/images/icon/icons8-edit-node-48.png";
 
 class BoardList extends Component {

@@ -6,9 +6,6 @@ const boardCardItem = props => {
     const dragStart = e => {
         const target = e.target;
         e.dataTransfer.setData('card_id', target.id);
-        // setTimeout(() => {
-        //     target.style.display = 'none';
-        // }, 0)
     }
 
     const dragOver = e => {
@@ -21,6 +18,7 @@ const boardCardItem = props => {
             onDragStart={dragStart}
             onDragOver={dragOver}
             draggable="true"
+            onClick={() => console.log("aaaa")}
         >
             <div className="board-list-card-item-name">
                 <div><strong>{props.task.title}</strong></div>

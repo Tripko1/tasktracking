@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import "./SignUp.css"
 import Input from "../../components/UI/Input/Input"
 import Button from "../../components/UI/Button/Button"
@@ -8,85 +8,82 @@ import { Link, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-class SignUp extends Component {
-
-    state = {
-        controls: {
-            name: {
-                elementType: "input",
-                elementConfig: {
-                    type: "text",
-                    placeholder: "Your Name",
-                },
-                value: "",
-                validation: {
-                    required: true,
-                    minLength: 2
-                },
-                valid: false,
-                touched: false,
+const SignUp = props => {
+    const [controls,setControls] = useState({
+        name: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "Your Name",
             },
-            username: {
-                elementType: "input",
-                elementConfig: {
-                    type: "text",
-                    placeholder: "Your Username",
-                },
-                value: "",
-                validation: {
-                    required: true,
-                    minLength: 2
-                },
-                valid: false,
-                touched: false,
+            value: "",
+            validation: {
+                required: true,
+                minLength: 2
             },
-            email: {
-                elementType: "input",
-                elementConfig: {
-                    type: "email",
-                    placeholder: "Mail Address",
-                },
-                value: "",
-                validation: {
-                    required: true,
-                    isEmail: true,
-                },
-                valid: false,
-                touched: false,
-            },
-            password: {
-                elementType: "input",
-                elementConfig: {
-                    type: "password",
-                    placeholder: "Password",
-                },
-                value: "",
-                validation: {
-                    required: true,
-                    minLength: 6,
-                },
-                valid: false,
-                touched: false,
-            },
-            password_confirmation: {
-                elementType: "input",
-                elementConfig: {
-                    type: "password",
-                    placeholder: "Confirm Password",
-                },
-                value: "",
-                validation: {
-                    required: true,
-                    minLength: 6,
-                    confirmPassword: true
-                },
-                valid: false,
-                touched: false,
-            },
+            valid: false,
+            touched: false,
         },
-    }
+        username: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "Your Username",
+            },
+            value: "",
+            validation: {
+                required: true,
+                minLength: 2
+            },
+            valid: false,
+            touched: false,
+        },
+        email: {
+            elementType: "input",
+            elementConfig: {
+                type: "email",
+                placeholder: "Mail Address",
+            },
+            value: "",
+            validation: {
+                required: true,
+                isEmail: true,
+            },
+            valid: false,
+            touched: false,
+        },
+        password: {
+            elementType: "input",
+            elementConfig: {
+                type: "password",
+                placeholder: "Password",
+            },
+            value: "",
+            validation: {
+                required: true,
+                minLength: 6,
+            },
+            valid: false,
+            touched: false,
+        },
+        password_confirmation: {
+            elementType: "input",
+            elementConfig: {
+                type: "password",
+                placeholder: "Confirm Password",
+            },
+            value: "",
+            validation: {
+                required: true,
+                minLength: 6,
+                confirmPassword: true
+            },
+            valid: false,
+            touched: false,
+        },
+    });
 
-    checkValidity(value, rules) {
+    const checkValidity = (value, rules) => {
         let isValid = true;
 
         if (!rules) {
@@ -116,101 +113,96 @@ class SignUp extends Component {
         }
 
         if (rules.confirmPassword) {
-            isValid = value === this.state.controls.password.value && isValid;
+            isValid = value === controls.password.value && isValid;
         }
 
         return isValid;
     }
 
-    inputChangedHandler = (event, controlName) => {
+    const inputChangedHandler = (event, controlName) => {
         const updatedControls = {
-            ...this.state.controls,
+            ...controls,
             [controlName]: {
-                ...this.state.controls[controlName],
+                ...controls[controlName],
                 value: event.target.value,
-                valid: this.checkValidity(
+                valid: checkValidity(
                     event.target.value,
-                    this.state.controls[controlName].validation
+                    controls[controlName].validation
                 ),
                 touched: true,
             },
         };
-        this.setState({ controls: updatedControls });
+        setControls(updatedControls);
     };
 
-    submitHandler = (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();
-        this.props.onRegistration(
-            this.state.controls.name.value,
-            this.state.controls.username.value,
-            this.state.controls.email.value,
-            this.state.controls.password.value,
-            this.state.controls.password_confirmation.value
+        props.onRegistration(
+            controls.name.value,
+            controls.username.value,
+            controls.email.value,
+            controls.password.value,
+            controls.password_confirmation.value
         )
     }
 
+    const formElementsArray = [];
+    for (let key in controls) {
+        formElementsArray.push({
+            id: key,
+            config: controls[key],
+        });
+    }
 
+    let form = <Spinner />
 
-    render() {
+    if (!props.loading) {
+        form = formElementsArray.map((formElement) => (
+            <Input
+                key={formElement.id}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                changed={(event) => inputChangedHandler(event, formElement.id)}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                invalid={!formElement.config.valid}
+            />
+        ))
+    }
+    let errorMessage = null;
+    if (props.error) {
+        errorMessage = <p style={{ color: 'red' }}><strong>{props.error}</strong></p>;
+    }
 
-        const formElementsArray = [];
-        for (let key in this.state.controls) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.controls[key],
-            });
-        }
+    let authRedirect = null;
+    if (props.isAuthenticated) {
+        authRedirect = <Redirect to={props.authRedirectPath} />;
+    }
+    let redirect = null;
+    if (props.success) {
+        redirect = <Redirect to="/" />
+    }
+    return (
+        <div >
+            {authRedirect}
+            {redirect}
+            <div className="SignUpbox">
+                <h1>SIGN UP</h1>
+                {errorMessage}
+                <form onSubmit={submitHandler}>
+                    {form}
+                    <Button btnType="Success">SUBMIT</Button>
+                </form>
+                <p>
+                    <Link to="/" className="switchLink">
+                        SWITCH TO LOG IN
+                    </Link>
+                </p>
 
-        let form = <Spinner />
-
-        if (!this.props.loading) {
-            form = formElementsArray.map((formElement) => (
-                <Input
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
-                    shouldValidate={formElement.config.validation}
-                    touched={formElement.config.touched}
-                    invalid={!formElement.config.valid}
-                />
-            ))
-        }
-        let errorMessage = null;
-        if (this.props.error) {
-            errorMessage = <p style={{ color: 'red' }}><strong>{this.props.error}</strong></p>;
-        }
-
-        let authRedirect = null;
-        if (this.props.isAuthenticated) {
-            authRedirect = <Redirect to={this.props.authRedirectPath} />;
-        }
-        let redirect = null;
-        if (this.props.success) {
-            redirect = <Redirect to="/" />
-        }
-        return (
-            <div >
-                {authRedirect}
-                {redirect}
-                <div className="SignUpbox">
-                    <h1>SIGN UP</h1>
-                    {errorMessage}
-                    <form onSubmit={this.submitHandler}>
-                        {form}
-                        <Button btnType="Success">SUBMIT</Button>
-                    </form>
-                    <p>
-                        <Link to="/" className="switchLink">
-                            SWITCH TO LOG IN
-                        </Link>
-                    </p>
-
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const mapStateToProps = state => {

@@ -1,38 +1,29 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Aux from "../Auxiliary/Auxiliary";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 
 import { connect } from 'react-redux';
 
-class Layout extends Component {
-    state = {
-        open: false
+const Layout = props => {
+    const [open,setOpen] = useState(false);
+
+    const setOpenState = () => {
+        setOpen(!open);
     }
 
-    setOpen = () => {
-        this.setState(prevState => {
-            return {
-                ...prevState,
-                open: !prevState.open
-            }
-        })
-    }
-
-    render() {
-        return (
-            <Aux>
-                <div>
-                    <Toolbar
-                        isAuth={this.props.isAuth}
-                        userData={this.props.userData}
-                        open={this.state.open}
-                        setOpen={this.setOpen}
-                    />
-                </div>
-                <main style={{ height: "100%" }}>{this.props.children}</main>
-            </Aux>
-        )
-    }
+    return (
+        <Aux>
+            <div>
+                <Toolbar
+                    isAuth={props.isAuth}
+                    userData={props.userData}
+                    open={open}
+                    setOpen={setOpenState}
+                />
+            </div>
+            <main style={{ height: "100%" }}>{props.children}</main>
+        </Aux>
+    )
 }
 
 const mapStateToProps = (state) => {

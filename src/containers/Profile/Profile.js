@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import Avatar from "react-avatar";
@@ -9,26 +9,24 @@ import ChangeProfileData from "../../components/Profile/ChangeProfileData/Change
 
 import "./Profile.css"
 
-class Profile extends Component {
+const Profile = props => {
 
-    state = {
-        selectedFile: null,
-        selectedImage: null,
-        imageError: false,
-        imageErrorMessage: null,
-        scale: 1.5,
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const setImageError = useState(false)[1];
+    const setImageErrorMessage = useState(null)[1];
+
+    const {onGetUserData, token, userId} = props;
+    useEffect(() => {
+        onGetUserData(token, userId);
+    },[onGetUserData, token, userId]);
+
+    const upload = () => {
+        props.onUploadImage(token, selectedFile);
+        cancelImageHandler();
     }
 
-    componentDidMount() {
-        this.props.onGetUserData(this.props.token, this.props.userId);
-    }
-
-    upload = () => {
-        this.props.onUploadImage(this.props.token, this.state.selectedFile);
-        this.cancelImageHandler()
-    }
-
-    getBase64 = (file, cb) => {
+    const getBase64 = (file, cb) => {
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
@@ -39,67 +37,59 @@ class Profile extends Component {
         };
     };
 
-    fileSelectedHandler = event => {
+    const fileSelectedHandler = event => {
         const file = event.target.files[0];
         if (/\.(gif|jpg|jpeg|tiff|png)$/i.test(file.name)) {
-            this.getBase64(file, result => {
-                this.setState({
-                    selectedImage: result,
-                    imageError: false,
-                    selectedFile: file
-                });
+            getBase64(file, result => {
+                setSelectedImage(result);
+                setImageError(false);
+                setSelectedFile(file);
             });
         } else {
-            this.setState({
-                imageError: true,
-                imageErrorMessage: "File type is not image."
-            });
+            setImageError(true);
+            setImageErrorMessage("File type is not image.");
         }
     };
 
-    cancelImageHandler = () => {
-        this.setState({
-            selectedImage: null,
-            selectedFile: null
-        })
+    const cancelImageHandler = () => {
+        setSelectedImage(null);
+        setSelectedFile(null);
     }
 
-    render() {
-        let content = <Spinner />;
-        if (!this.props.loading) {
-            content = (
-                <Aux>
-                    <div className="Header">
-                        <Avatar
-                            size="44"
-                            round={true}
-                            src={this.props.userData.img}
-                            name={this.props.userData.name + " " + this.props.userData.username}
-                            border={50}
-                        />
-                        <div className="Header-item"><strong>{this.props.userData.name + " " + this.props.userData.username}</strong></div>
-                        <div className="Header-item">{this.props.userData.email}</div>
-                    </div>
-                    <ChangePicture
-                        userData={this.props.userData}
-                        fileSelectedHandler={this.fileSelectedHandler}
-                        selectedImage={this.state.selectedImage}
-                        selectedFile={this.state.selectedFile}
-                        cancelImageHandler={this.cancelImageHandler}
-                        upload={this.upload}
+    let content = <Spinner />;
+    if (!props.loading) {
+        content = (
+            <Aux>
+                <div className="Header">
+                    <Avatar
+                        size="44"
+                        round={true}
+                        src={props.userData.img}
+                        name={props.userData.name + " " + props.userData.username}
+                        border={50}
                     />
-                    <ChangeProfileData
-                        userData={this.props.userData}
-                    />
-                </Aux>
-            )
-        }
-        return (
-            <div className="Profile">
-                {content}
-            </div>
+                    <div className="Header-item"><strong>{props.userData.name + " " + props.userData.username}</strong></div>
+                    <div className="Header-item">{props.userData.email}</div>
+                </div>
+                <ChangePicture
+                    userData={props.userData}
+                    fileSelectedHandler={fileSelectedHandler}
+                    selectedImage={selectedImage}
+                    selectedFile={selectedFile}
+                    cancelImageHandler={cancelImageHandler}
+                    upload={upload}
+                />
+                <ChangeProfileData
+                    userData={props.userData}
+                />
+            </Aux>
         )
     }
+    return (
+        <div className="Profile">
+            {content}
+        </div>
+    )
 }
 const mapStateToProps = (state) => {
     return {

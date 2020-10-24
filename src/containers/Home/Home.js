@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Home.css";
 import * as actions from "../../store/actions/index";
 import Aux from "../../hoc/Auxiliary/Auxiliary"
@@ -9,12 +9,8 @@ import LeftHomeSider from "../../components/Home/LeftHomeSider/LeftHomeSider";
 import PersonalBoard from "../../components/Home/AllBoards/PersonalBoard/PersonalBoard";
 import CreateProject from "./Project/CreateProject/CreateProject";
 
-// import Echo from 'laravel-echo';
-// import socketio from "socket.io-client";
-class Home extends Component {
-    state = {
-        show: false
-    }
+const Home = props => {
+    const [show, setShow] = useState(false);
 
     // constructor(props) {
     //     super(props)
@@ -36,71 +32,65 @@ class Home extends Component {
     //             console.log(e);
     //         })
     // }
+    const {onGetMyProjects,onGetUserData,onGetAllUsers, token, userId} = props;
 
-    componentDidMount() {
-        this.props.onGetMyProjects(this.props.token);
-        this.props.onGetUserData(this.props.token, this.props.userId);
-        this.props.onGetAllUsers(this.props.token);
+    useEffect(() => {
+        onGetMyProjects(token);
+        onGetUserData(token, userId);
+        onGetAllUsers(token);
+    },[onGetMyProjects, onGetUserData, onGetAllUsers, token, userId]);
+
+    const openModal = () => {
+        setShow(true);
     }
 
-    openModal = () => {
-        this.setState({ show: true })
+    const closeModal = () => {
+        setShow(false);
     }
 
-    closeModal = () => {
-        this.setState({ show: false })
-    }
+    let Homecontent = <Spinner />;
+    let modalCreateProject = null;
 
-    render() {
-        let Homecontent = <Spinner />;
-        let modalCreateProject = null;
-        //let error = null;
-
-        if (!this.props.loadingProjects) {
-            Homecontent = (
-                <Aux>
-                    <LeftHomeSider />
-                    <div className="allBoards">
-                        <div style={{ position: "sticky", top: "0px" }}>
-                            <PersonalBoard
-                                projects={this.props.projects}
-                                show={this.state.show}
-                                openModal={this.openModal}
-                                closeModal={this.closeModal}
-                            />
-                        </div>
+    if (!props.loadingProjects) {
+        Homecontent = (
+            <Aux>
+                <LeftHomeSider />
+                <div className="allBoards">
+                    <div style={{ position: "sticky", top: "0px" }}>
+                        <PersonalBoard
+                            projects={props.projects}
+                            show={show}
+                            openModal={openModal}
+                            closeModal={closeModal}
+                        />
                     </div>
-                </Aux>
-            );
-        }
+                </div>
+            </Aux>
+        );
+    }
 
-        if (this.state.show) {
-            modalCreateProject = (
-                <Modal
-                    show={this.state.show}
-                    cancelModalHandler={this.closeModal}
-                >
-                    <CreateProject
-                        closeModal={this.closeModal}
-                        token={this.props.token}
-                        onCreateProject={this.props.onCreateProject}
-                    />
-                </Modal>
-            )
-        }
-
-        // if (this.props.error) {
-        //     error = <h1 style={{ textAlign: "center" }}><strong>{this.props.error}</strong></h1>;
-        // }
-
-        return (
-            <div className="Home">
-                {/* {error} */}
-                {Homecontent}
-                {modalCreateProject}
-            </div>
+    if (show) {
+        modalCreateProject = (
+            <Modal
+                show={show}
+                cancelModalHandler={closeModal}
+            >
+                <CreateProject
+                    closeModal={closeModal}
+                    token={token}
+                    onCreateProject={props.onCreateProject}
+                />
+            </Modal>
         )
     }
+
+    return (
+        <div className="Home">
+            {/* {error} */}
+            {Homecontent}
+            {modalCreateProject}
+        </div>
+    )
 }
 
 const mapStateToProps = (state) => {

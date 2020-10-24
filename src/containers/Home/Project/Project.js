@@ -3,7 +3,7 @@ import "./Project.css";
 import * as actions from "../../../store/actions/index";
 import Header from "../../../components/SelectedProject/Header/Header";
 import Board from "./Board/Board";
-import image from "../../../assets/images/pro2.jpg";
+import image from "../../../assets/images/backgr2.jpg";
 import Modal from "../../../components/UI/Modal/Modal";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import CreateChecklist from "./CreateChecklist/CreateChecklist";
