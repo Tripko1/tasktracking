@@ -1,63 +1,57 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./CreateProject.css"
 import background from "../../../../assets/images/pro2.jpg";
 import cancel from "../../../../assets/images/icon/cancel.png";
 import Button from "../../../../components/UI/Button/Button";
 
-class CreateProject extends Component {
-    state = {
-        projectName: "",
-        touched: false,
-    }
+const CreateProject = props => {
+    const [projectName, setProjectName] = useState("");
+    const [touched, setTouched] = useState(false);
 
-    submitCreatProjectHandler = (event) => {
+    const submitCreatProjectHandler = (event) => {
         event.preventDefault();
-        this.props.onCreateProject(this.props.token, this.state.projectName);
-        this.props.closeModal();
+        props.onCreateProject(props.token, projectName);
+        props.closeModal();
     }
 
-    isTouched(value) {
+    const isTouched = (value) => {
         return value.trim() !== ""
     }
 
-    handleInput = (event) => {
-        this.setState({
-            projectName: event.target.value,
-            touched: this.isTouched(event.target.value)
-        })
+    const handleInput = (event) => {
+        setProjectName(event.target.value);
+        setTouched(isTouched(event.target.value));
     }
 
-    render() {
-        return (
-            <form onSubmit={this.submitCreatProjectHandler}>
-                <div className="CreateProject">
-                    <div
-                        className="create-project-tile"
-                        style={{
-                            backgroundImage: `url(${background})`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSize: "100% 100%"
-                        }}>
-                        <div onClick={this.props.closeModal} style={{ cursor: "pointer" }}>
-                            <img src={cancel} alt="" className="cancel-create-project" />
-                        </div>
-                        <div className="create-project-tile-input">
-                            <input
-                                className="create-project-tile-input-element"
-                                placeholder="Add board title"
-                                value={this.state.projectName}
-                                onChange={this.handleInput}
-                                ref={input => input && input.focus()}
-                            />
-                        </div>
+    return (
+        <form onSubmit={submitCreatProjectHandler}>
+            <div className="CreateProject">
+                <div
+                    className="create-project-tile"
+                    style={{
+                        backgroundImage: `url(${background})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "100% 100%"
+                    }}>
+                    <div onClick={props.closeModal} style={{ cursor: "pointer" }}>
+                        <img src={cancel} alt="" className="cancel-create-project" />
+                    </div>
+                    <div className="create-project-tile-input">
+                        <input
+                            className="create-project-tile-input-element"
+                            placeholder="Add board title"
+                            value={projectName}
+                            onChange={handleInput}
+                            ref={input => input && input.focus()}
+                        />
                     </div>
                 </div>
-                <div className="create-project-tile-button">
-                    <Button btnType="Success" disabled={!this.state.touched}>Create Board</Button>
-                </div>
-            </form>
-        )
-    }
+            </div>
+            <div className="create-project-tile-button">
+                <Button btnType="Success" disabled={!touched}>Create Board</Button>
+            </div>
+        </form>
+    )
 }
 
 export default CreateProject;
