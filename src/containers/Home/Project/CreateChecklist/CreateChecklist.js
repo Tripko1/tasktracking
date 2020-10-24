@@ -5,7 +5,7 @@ import Button from "../../../../components/UI/Button/Button";
 
 const CreateChecklist = props => {
     const [checklistName, setChecklistName] = useState("");
-    const [touched, setTouched] = useState(false)[1];
+    const [touched, setTouched] = useState(false);
 
     const submitCreateChecklistHandler = (event) => {
         event.preventDefault();
