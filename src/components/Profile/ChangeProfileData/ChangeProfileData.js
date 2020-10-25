@@ -3,7 +3,7 @@ import "./ChangeProfileData.css";
 import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
 import { Redirect } from "react-router-dom"
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions/index";
 
 const ChangeProfileData = props => {
@@ -79,9 +79,13 @@ const ChangeProfileData = props => {
             touched: false,
         },
     });
-    const [changeSomething, setChangeSomething] = useState(false);
     const [btnPassword, setBtnPassword] = useState(false);
     const [redirect, setRedirect] = useState(false);
+
+    const token = useSelector(state => state.auth.token);
+
+    const dispatch = useDispatch();
+    const onGetEditProfile = (token, data) => dispatch(actions.getEditProfile(token, data));
 
     const checkValidity = (value, rules) => {
         let isValid = true;
@@ -169,7 +173,7 @@ const ChangeProfileData = props => {
             data.password = changePassword["password"].value
             data.password_confirmation = changePassword["password_confirmation"].value
         }
-        props.onGetEditProfile(props.token, data);
+        onGetEditProfile(token, data);
         redirectToHome();
     }
 
@@ -272,16 +276,4 @@ const ChangeProfileData = props => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        token: state.auth.token,
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onGetEditProfile: (token, data) => dispatch(actions.getEditProfile(token, data))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeProfileData);
+export default ChangeProfileData;

@@ -3,12 +3,16 @@ import DropdownItem from "./DropdownItem/DropdownItem";
 import "./DropdownMenu.css";
 import Avatar from "react-avatar";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, withRouter } from "react-router-dom"
 import { ReactComponent as Settings } from "../../../../assets/svg/settings-gears.svg";
 import { ReactComponent as Logout } from "../../../../assets/svg/door-exit.svg";
 
 const DropdownMenu = props => {
+    const name = useSelector(state => state.userData.userData.name);
+    const img = useSelector(state => state.userData.userData.img);
+    const username = useSelector(state => state.userData.userData.username);
+    
     return (
         <div className="dropdown">
             <DropdownItem
@@ -17,8 +21,8 @@ const DropdownMenu = props => {
                     <Avatar
                         size="50"
                         round={true}
-                        src={props.img}
-                        name={props.name + " " + props.username}
+                        src={img}
+                        name={name + " " + username}
                         border={50}
                     />
                     <span style={{ marginLeft: "10px" }}><strong>My Profile</strong></span>
@@ -30,12 +34,4 @@ const DropdownMenu = props => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        name: state.userData.userData.name,
-        img: state.userData.userData.img,
-        username: state.userData.userData.username
-    }
-}
-
-export default withRouter(connect(mapStateToProps)(DropdownMenu));
+export default withRouter(DropdownMenu);

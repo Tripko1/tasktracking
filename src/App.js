@@ -1,7 +1,7 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect, Suspense, useCallback } from 'react';
 import "./App.css"
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as actions from "./store/actions/index";
 
 import Layout from "./hoc/Layout/Layout";
@@ -14,7 +14,11 @@ const Profile = React.lazy(() => import("./containers/Profile/Profile"));
 const Home = React.lazy(() => import("./containers/Home/Home"));
 
 const App = props => {
-  const {onTryAutoSignUp} = props;
+
+  const isAuthenticated = useSelector(state => state.auth.token !== null);
+
+  const dispatch = useDispatch();
+  const onTryAutoSignUp = useCallback(() => dispatch(actions.authCheckState()),[dispatch]);
 
   useEffect(() => {
     onTryAutoSignUp()
@@ -26,7 +30,7 @@ const App = props => {
       <Route path='/' exact render={() => <Login {...props} />} />
     </Switch>
   )
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     routes = (
       <Switch>
         <Route path='/logout' component={SignOut} />
@@ -52,17 +56,4 @@ const App = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null,
-    projects: state.myProjects.myProjects
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignUp: () => dispatch(actions.authCheckState()),
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(App);

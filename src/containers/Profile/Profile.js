@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from "react-redux";
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../store/actions/index";
 import Avatar from "react-avatar";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -16,13 +16,21 @@ const Profile = props => {
     const setImageError = useState(false)[1];
     const setImageErrorMessage = useState(null)[1];
 
-    const {onGetUserData, token, userId} = props;
+    const token = useSelector(state => state.auth.token);
+    const userId = useSelector(state => state.auth.userId);
+    const loading = useSelector(state => state.userData.loading);
+    const userData = useSelector(state => state.userData.userData);
+
+    const dispatch = useDispatch();
+    const onGetUserData = useCallback((token, userId) => dispatch(actions.getUserData(token, userId)),[dispatch]);
+    const onUploadImage = useCallback((token, img) => dispatch(actions.uploadImage(token, img)),[dispatch]);
+
     useEffect(() => {
         onGetUserData(token, userId);
     },[onGetUserData, token, userId]);
 
     const upload = () => {
-        props.onUploadImage(token, selectedFile);
+        onUploadImage(token, selectedFile);
         cancelImageHandler();
     }
 
@@ -57,22 +65,22 @@ const Profile = props => {
     }
 
     let content = <Spinner />;
-    if (!props.loading) {
+    if (!loading) {
         content = (
             <Aux>
                 <div className="Header">
                     <Avatar
                         size="44"
                         round={true}
-                        src={props.userData.img}
-                        name={props.userData.name + " " + props.userData.username}
+                        src={userData.img}
+                        name={userData.name + " " + userData.username}
                         border={50}
                     />
-                    <div className="Header-item"><strong>{props.userData.name + " " + props.userData.username}</strong></div>
-                    <div className="Header-item">{props.userData.email}</div>
+                    <div className="Header-item"><strong>{userData.name + " " + userData.username}</strong></div>
+                    <div className="Header-item">{userData.email}</div>
                 </div>
                 <ChangePicture
-                    userData={props.userData}
+                    userData={userData}
                     fileSelectedHandler={fileSelectedHandler}
                     selectedImage={selectedImage}
                     selectedFile={selectedFile}
@@ -80,7 +88,7 @@ const Profile = props => {
                     upload={upload}
                 />
                 <ChangeProfileData
-                    userData={props.userData}
+                    userData={userData}
                 />
             </Aux>
         )
@@ -91,21 +99,5 @@ const Profile = props => {
         </div>
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        token: state.auth.token,
-        userId: state.auth.userId,
-        loading: state.userData.loading,
-        error: state.userData.error,
-        userData: state.userData.userData,
-    }
-}
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onGetUserData: (token, userId) => dispatch(actions.getUserData(token, userId)),
-        onUploadImage: (token, img) => dispatch(actions.uploadImage(token, img))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;

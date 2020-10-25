@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import "./SignUp.css"
 import Input from "../../components/UI/Input/Input"
 import Button from "../../components/UI/Button/Button"
@@ -6,7 +6,7 @@ import * as actions from "../../store/actions/index"
 import Spinner from "../../components/UI/Spinner/Spinner"
 import { Link, Redirect } from 'react-router-dom'
 
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 const SignUp = props => {
     const [controls,setControls] = useState({
@@ -82,6 +82,15 @@ const SignUp = props => {
             touched: false,
         },
     });
+    const loading = useSelector(state =>  state.auth.loading);
+    const error = useSelector(state =>  state.auth.error);
+    const isAuthenticated = useSelector(state =>  state.auth.token !== null);
+    const authRedirectPath = useSelector(state =>  state.auth.authRedirectPath);
+    const success = useSelector(state =>  state.auth.success);
+
+    const dispatch = useDispatch();
+    const onRegistration = useCallback((name, username, email, password, password_confirmation) =>
+            dispatch(actions.registration(name, username, email, password, password_confirmation)),[dispatch]);
 
     const checkValidity = (value, rules) => {
         let isValid = true;
@@ -137,7 +146,7 @@ const SignUp = props => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.onRegistration(
+        onRegistration(
             controls.name.value,
             controls.username.value,
             controls.email.value,
@@ -156,7 +165,7 @@ const SignUp = props => {
 
     let form = <Spinner />
 
-    if (!props.loading) {
+    if (!loading) {
         form = formElementsArray.map((formElement) => (
             <Input
                 key={formElement.id}
@@ -171,16 +180,16 @@ const SignUp = props => {
         ))
     }
     let errorMessage = null;
-    if (props.error) {
-        errorMessage = <p style={{ color: 'red' }}><strong>{props.error}</strong></p>;
+    if (error) {
+        errorMessage = <p style={{ color: 'red' }}><strong>{error}</strong></p>;
     }
 
     let authRedirect = null;
-    if (props.isAuthenticated) {
-        authRedirect = <Redirect to={props.authRedirectPath} />;
+    if (isAuthenticated) {
+        authRedirect = <Redirect to={authRedirectPath} />;
     }
     let redirect = null;
-    if (props.success) {
+    if (success) {
         redirect = <Redirect to="/" />
     }
     return (
@@ -205,24 +214,4 @@ const SignUp = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        token: state.auth.token,
-        userId: state.auth.userId,
-        loading: state.auth.loading,
-        error: state.auth.error,
-        isAuthenticated: state.auth.token !== null,
-        authRedirectPath: state.auth.authRedirectPath,
-        success: state.auth.success
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onRegistration: (name, username, email, password, password_confirmation) =>
-            dispatch(actions.registration(name, username, email, password, password_confirmation)),
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/")),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default SignUp;
