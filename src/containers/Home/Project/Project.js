@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Project.css";
 import * as actions from "../../../store/actions/index";
 import Header from "../../../components/SelectedProject/Header/Header";
@@ -9,172 +9,152 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import CreateChecklist from "./CreateChecklist/CreateChecklist";
 import CreateNewTask from "./CreateNewTask/CreateNewTask";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-class Project extends Component {
-    state = {
-        projectName: this.props.match.params.projectName,
-        touchedProjectName: true,
-        show: false,
-        showNewTask: false,
-        selectedId: null
-    }
+const Project = props => {
+    const [projectName, setProjectName] = useState(props.match.params.projectName);
+    const [touchedProjectName, setTouchedProjectName] = useState(true);
+    const [show, setShow] = useState(false);
+    const [showNewTask, setShowNewTask] = useState(false);
+    const [selectedId, setSelectedId] = useState();
 
-    static getDerivedStateFromProps = (props, state) => {
-        if (state.projectName !== props.match.params.projectName) {
-            return { touchedProjectName: false }
-        }
-        else {
-            return { touchedProjectName: true }
-        }
-    }
+    const token = useSelector(state => state.auth.token);
+    const checklists = useSelector(state => state.checklists.checklists);
+    const loading = useSelector(state => state.checklists.loadingChecklists);
+    const loadingChecklist = useSelector(state => state.checklists.loadingChecklist);
 
-    componentDidMount() {
-        this.loadData();
-    }
+    const dispatch = useDispatch();
+    const onCreateChecklist = useCallback((token, title, id) => dispatch(actions.createChecklist(token, title, id)),[dispatch]);
+    const onUpdateChecklist = useCallback((token, title, id) => dispatch(actions.updateChecklist(token, title, id)),[dispatch]);
+    const onDeleteChecklist = useCallback((token, id) => dispatch(actions.delteChecklist(token, id)),[dispatch]);
+    const onGetAllChecklistsTasks = useCallback((token, checklistId) => dispatch(actions.getAllChecklistTasks(token, checklistId)),[dispatch]);
+    const onCreateList = useCallback((data) => dispatch(actions.createTask(data)),[dispatch]);
+    const onChangeChecklist = useCallback((checklistId, cardId, position) => dispatch(actions.changeChecklist(checklistId, cardId, position)),[dispatch]);  
 
-    loadData = () => {
-        if (this.props.match.params.projectId) {
+    const loadData = useCallback(() => {
+        if (props.match.params.projectId) {
             if (
-                !this.props.checklists ||
-                (this.props.checklists &&
-                    this.props.checklists.id !== +this.props.match.params.id)
+                !checklists ||
+                (checklists &&
+                    checklists.id !== +props.match.params.id)
             ) {
-                this.props.onGetAllChecklistsTasks(this.props.token, this.props.match.params.projectId)
+                onGetAllChecklistsTasks(token, props.match.params.projectId)
             }
         }
+    },[onGetAllChecklistsTasks, token, props.match.params.projectId, checklists.id, props.match.params.id]);
+
+    useEffect(() => {
+        if (projectName !== props.match.params.projectName) {
+            setTouchedProjectName(false);
+        }
+        else {
+            setTouchedProjectName(true);
+        }
+        loadData();
+    },[loadData, projectName, props.match.params.projectName]);
+
+    const openModal = () => {
+        setShow(true);
     }
 
-    openModal = () => {
-        this.setState({ show: true })
-    }
-    closeModal = () => {
-        this.setState({ show: false })
+    const closeModal = () => {
+        setShow(false);
     }
 
-    openTaskModal = (id) => {
-        this.setState({
-            showNewTask: true,
-            selectedId: id
-        })
+    const openTaskModal = (id) => {
+        setShowNewTask(true);
+        setSelectedId(id);
     }
 
-    closeTaskModal = () => {
-        this.setState({
-            showNewTask: false,
-            selectedId: null
-        })
+    const closeTaskModal = () => {
+        setShowNewTask(false);
+        setSelectedId(null);
     }
 
-    handleProjectName = (event) => {
-        this.setState({
-            projectName: event.target.value
-        })
+    const handleProjectName = (event) => {
+        setProjectName(event.target.value);
     }
 
-    submitEditProject = (event) => {
+    const submitEditProject = (event) => {
         event.preventDefault()
         console.log("[SUBMIT EDIT PROJECT]")
     }
 
-    render() {
-        let modal = null;
-        if (this.state.show) {
-            modal = (
-                <Modal
-                    show={this.state.show}
-                    cancelModalHandler={this.closeModal}
-                >
-                    <CreateChecklist
-                        closeModal={this.closeModal}
-                        token={this.props.token}
-                        onCreateChecklist={this.props.onCreateChecklist}
-                        project_id={this.props.match.params.projectId}
-                    />
-                </Modal>
-            )
-        }
-        let taskModal = null;
-        if (this.state.showNewTask) {
-            taskModal = (
-                <Modal
-                    show={this.state.showNewTask}
-                    cancelModalHandler={this.closeTaskModal}
-                >
-                    <CreateNewTask
-                        closeModal={this.closeTaskModal}
-                        token={this.props.token}
-                        project_id={this.props.match.params.projectId}
-                        checklistId={this.state.selectedId}
-                        onCreateList={this.props.onCreateList}
-                        checklists={this.props.checklists}
-                    />
-                </Modal>
-            )
-        }
-        let content = <Spinner />;
-        if (!this.props.loading) {
-            content = (
-                <Aux>
-                    {modal}
-                    {taskModal}
-                    <Header
-                        projectName={this.state.projectName}
-                        handleProjectName={this.handleProjectName}
-                        touchedProjectName={this.state.touchedProjectName}
-                        submitEditProject={this.submitEditProject}
-                    />
-                    <Board
-                        token={this.props.token}
-                        show={this.state.show}
-                        openModal={this.openModal}
-                        closeModal={this.closeModal}
-                        checklists={this.props.checklists}
-                        loadingChecklist={this.props.loadingChecklist}
-                        onUpdateChecklist={this.props.onUpdateChecklist}
-                        onDeleteChecklist={this.props.onDeleteChecklist}
-                        openTaskModal={this.openTaskModal}
-                        onChangeChecklist={this.props.onChangeChecklist}
-                        projectId={this.props.match.params.projectId}
-                    />
-                </Aux>
-            )
-        }
-        return (
-            <div
-                className="Project"
-                style={{
-                    backgroundImage: `url(${image})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "100% 100%"
-                }}
+    let modal = null;
+    if (show) {
+        modal = (
+            <Modal
+                show={show}
+                cancelModalHandler={closeModal}
             >
-                {content}
-            </div>
-
+                <CreateChecklist
+                    closeModal={closeModal}
+                    token={token}
+                    onCreateChecklist={onCreateChecklist}
+                    project_id={props.match.params.projectId}
+                />
+            </Modal>
         )
     }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        token: state.auth.token,
-        checklists: state.checklists.checklists,
-        loading: state.checklists.loadingChecklists,
-        loadingChecklist: state.checklists.loadingChecklist,
+    let taskModal = null;
+    if (showNewTask) {
+        taskModal = (
+            <Modal
+                show={showNewTask}
+                cancelModalHandler={closeTaskModal}
+            >
+                <CreateNewTask
+                    closeModal={closeTaskModal}
+                    token={token}
+                    project_id={props.match.params.projectId}
+                    checklistId={selectedId}
+                    onCreateList={onCreateList}
+                    checklists={checklists}
+                />
+            </Modal>
+        )
     }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onGetAllChecklists: (token, id) => dispatch(actions.getAllChecklist(token, id)),
-        onCreateChecklist: (token, title, id) => dispatch(actions.createChecklist(token, title, id)),
-        onUpdateChecklist: (token, title, id) => dispatch(actions.updateChecklist(token, title, id)),
-        onDeleteChecklist: (token, id) => dispatch(actions.delteChecklist(token, id)),
-        onGetAllChecklistsTasks: (token, checklistId) => dispatch(actions.getAllChecklistTasks(token, checklistId)),
-        onCreateList: (data) => dispatch(actions.createTask(data)),
-        onChangeChecklist: (checklistId, cardId, position) => dispatch(actions.changeChecklist(checklistId, cardId, position))
+    let content = <Spinner />;
+    if (!loading) {
+        content = (
+            <Aux>
+                {modal}
+                {taskModal}
+                <Header
+                    projectName={projectName}
+                    handleProjectName={handleProjectName}
+                    touchedProjectName={touchedProjectName}
+                    submitEditProject={submitEditProject}
+                />
+                <Board
+                    token={token}
+                    show={show}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                    checklists={checklists}
+                    loadingChecklist={loadingChecklist}
+                    onUpdateChecklist={onUpdateChecklist}
+                    onDeleteChecklist={onDeleteChecklist}
+                    openTaskModal={openTaskModal}
+                    onChangeChecklist={onChangeChecklist}
+                    projectId={props.match.params.projectId}
+                />
+            </Aux>
+        )
     }
+    return (
+        <div
+            className="Project"
+            style={{
+                backgroundImage: `url(${image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 100%"
+            }}
+        >
+            {content}
+        </div>
+
+    )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Project);
+export default Project;

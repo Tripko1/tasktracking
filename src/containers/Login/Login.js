@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import "./Login.css"
 import Input from "../../components/UI/Input/Input"
 import Button from "../../components/UI/Button/Button"
@@ -6,7 +6,7 @@ import * as actions from "../../store/actions/index"
 import Spinner from "../../components/UI/Spinner/Spinner"
 import { Link } from 'react-router-dom'
 
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Login = props => {
     const [controls,setControls] = useState({
@@ -39,6 +39,14 @@ const Login = props => {
             touched: false,
         },
     });
+
+    const loading = useSelector(state => state.auth.loading);
+    const error = useSelector(state => state.auth.error);
+    const success = useSelector(state => state.auth.success);
+
+    const dispatch = useDispatch();
+    const onAuth = useCallback((email, password) => dispatch(actions.auth(email, password)),[dispatch]);
+    const onSetSuccess = useCallback(() => dispatch(actions.setSuccess()),[dispatch]);
 
     const checkValidity = (value, rules) => {
         let isValid = true;
@@ -90,7 +98,7 @@ const Login = props => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.onAuth(
+        onAuth(
             controls.email.value,
             controls.password.value
         )
@@ -106,7 +114,7 @@ const Login = props => {
 
     let form = <Spinner />
 
-    if (!props.loading) {
+    if (!loading) {
         form = formElementsArray.map((formElement) => (
             <Input
                 key={formElement.id}
@@ -122,12 +130,12 @@ const Login = props => {
     }
 
     let errorMessage = null;
-    if (props.error) {
-        errorMessage = <p style={{ color: 'red' }}><strong>{props.error}</strong></p>;
+    if (error) {
+        errorMessage = <p style={{ color: 'red' }}><strong>{error}</strong></p>;
     }
 
-    if (props.success) {
-        props.onSetSuccess()
+    if (success) {
+        onSetSuccess()
     }
 
     return (
@@ -151,22 +159,4 @@ const Login = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        token: state.auth.token,
-        userId: state.auth.userId,
-        loading: state.auth.loading,
-        error: state.auth.error,
-        isAuthenticated: state.auth.token !== null,
-        success: state.auth.success
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password)),
-        onSetSuccess: () => dispatch(actions.setSuccess())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

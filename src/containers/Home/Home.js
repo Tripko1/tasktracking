@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import "./Home.css";
 import * as actions from "../../store/actions/index";
 import Aux from "../../hoc/Auxiliary/Auxiliary"
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Modal from "../../components/UI/Modal/Modal"
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LeftHomeSider from "../../components/Home/LeftHomeSider/LeftHomeSider";
 import PersonalBoard from "../../components/Home/AllBoards/PersonalBoard/PersonalBoard";
 import CreateProject from "./Project/CreateProject/CreateProject";
 
 const Home = props => {
     const [show, setShow] = useState(false);
+
+    const token = useSelector(state => state.auth.token);
+    const userId = useSelector(state => state.auth.userId);
+    const projects = useSelector(state => state.myProjects.myProjects);
+    const loadingProjects = useSelector(state => state.myProjects.loadingProjects);
+
+    const dispatch = useDispatch();
+    const onGetUserData = useCallback((token, userId) => dispatch(actions.getUserData(token, userId)),[dispatch]);
+    const onGetAllUsers = useCallback((token) => dispatch(actions.getAllUsers(token)),[dispatch]);
+    const onGetMyProjects = useCallback((token) => dispatch(actions.getMyProjects(token)),[dispatch]);
+    const onCreateProject = (token, title) => dispatch(actions.createProject(token, title));
 
     // constructor(props) {
     //     super(props)
@@ -32,7 +43,6 @@ const Home = props => {
     //             console.log(e);
     //         })
     // }
-    const {onGetMyProjects,onGetUserData,onGetAllUsers, token, userId} = props;
 
     useEffect(() => {
         onGetMyProjects(token);
@@ -51,14 +61,14 @@ const Home = props => {
     let Homecontent = <Spinner />;
     let modalCreateProject = null;
 
-    if (!props.loadingProjects) {
+    if (!loadingProjects) {
         Homecontent = (
             <Aux>
                 <LeftHomeSider />
                 <div className="allBoards">
                     <div style={{ position: "sticky", top: "0px" }}>
                         <PersonalBoard
-                            projects={props.projects}
+                            projects={projects}
                             show={show}
                             openModal={openModal}
                             closeModal={closeModal}
@@ -78,7 +88,7 @@ const Home = props => {
                 <CreateProject
                     closeModal={closeModal}
                     token={token}
-                    onCreateProject={props.onCreateProject}
+                    onCreateProject={onCreateProject}
                 />
             </Modal>
         )
@@ -93,26 +103,4 @@ const Home = props => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        token: state.auth.token,
-        userId: state.auth.userId,
-        loading: state.userData.loading,
-        error: state.userData.error,
-        userData: state.userData.userData,
-        allUsers: state.users.allUsers,
-        projects: state.myProjects.myProjects,
-        loadingProjects: state.myProjects.loadingProjects,
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onGetUserData: (token, userId) => dispatch(actions.getUserData(token, userId)),
-        onGetAllUsers: (token) => dispatch(actions.getAllUsers(token)),
-        onGetMyProjects: (token) => dispatch(actions.getMyProjects(token)),
-        onCreateProject: (token, title) => dispatch(actions.createProject(token, title))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
